@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kewl top Down shit</title>
+
+	<link href="assets/demoStyles.css" rel="stylesheet" type="text/css" />
+
+	<!-- Note: All core EaselJS classes are listed here: -->
+	<script type="text/javascript" src="src/createjs/events/Event.js"></script>
+	<script type="text/javascript" src="src/createjs/events/EventDispatcher.js"></script>
+	<script type="text/javascript" src="src/createjs/utils/IndexOf.js"></script>
+	<script type="text/javascript" src="src/easeljs/utils/UID.js"></script>
+	<script type="text/javascript" src="src/easeljs/utils/Ticker.js"></script>
+	<script type="text/javascript" src="src/easeljs/geom/Matrix2D.js"></script>
+	<script type="text/javascript" src="src/easeljs/geom/Point.js"></script>
+	<script type="text/javascript" src="src/easeljs/geom/Rectangle.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Shadow.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/SpriteSheet.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Graphics.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/DisplayObject.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Container.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Stage.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Bitmap.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Sprite.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/BitmapAnimation.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/BitmapText.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Shape.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/Text.js"></script>
+	<script type="text/javascript" src="src/easeljs/display/DOMElement.js"></script>
+	<script type="text/javascript" src="src/easeljs/events/MouseEvent.js"></script>
+	<script type="text/javascript" src="src/easeljs/filters/Filter.js"></script>
+	<script type="text/javascript" src="src/easeljs/ui/ButtonHelper.js"></script>
+	<script type="text/javascript" src="src/easeljs/ui/Touch.js"></script>
+	<script type="text/javascript" src="src/easeljs/utils/SpriteSheetUtils.js"></script>
+	<script type="text/javascript" src="src/easeljs/utils/SpriteSheetBuilder.js"></script>
+
+	<!-- We also provide hosted minified versions of all CreateJS libraries.
+	  http://code.createjs.com -->
+
+	<script type="text/javascript">
+	var canvas;
+	var stage;
+
+    var level = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                 1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,
+                 1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,
+                 1,0,0,1,0,0,1,1,0,0,1,1,0,0,1,1,1,0,0,1,
+                 1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,
+                 1,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,
+                 1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
+                 1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
+                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+
+    ];
+
+    var tiles = [];
+    var smiley;
+    var moving = false;
+    var speed = 15;
+
+    var KEYCODE_ENTER = 13;		//usefull keycode
+	var KEYCODE_SPACE = 32;		//usefull keycode
+	var KEYCODE_UP = 38;		//usefull keycode
+	var KEYCODE_LEFT = 37;		//usefull keycode
+	var KEYCODE_RIGHT = 39;		//usefull keycode
+	var KEYCODE_W = 87;			//usefull keycode
+    var KEYCODE_S = 83;			//usefull keycode
+	var KEYCODE_A = 65;			//usefull keycode
+	var KEYCODE_D = 68;			//usefull keycode
+
+    var xVel = 0;
+    var yVel = 0;
+    var right = false, down = false;
+	document.onkeydown = handleKeyDown;
+	document.onkeyup = handleKeyUp;
+
+    function Hero(){
+
+
+
+    }
+
+    function Creep(){
+
+
+
+    }
+
+	function init() {
+	    canvas = document.getElementById('myCanvas');
+	    width = canvas.width;
+	    height = canvas.height;
+	    stage = new createjs.Stage(canvas);
+
+        var xPos = 0, yPos = 0;
+        for(var i=0;i<level.length;i++){
+                if(i%20 == 0){
+                    xPos = 0;
+                    yPos += 1;
+                }
+                else{
+                    xPos += 1;
+                }
+            if(level[i] == 1){
+                var tile = Tile();
+                tile.x = xPos * 50;
+                tile.y = yPos * 50;
+                stage.addChild(tile);
+                stage.update();
+                tiles.push(tile);
+             }
+
+        }
+
+        	    smiley = drawSmiley();
+		smiley.x = 400;
+		smiley.y = 400;
+	    stage.addChild(smiley);
+	    stage.update();
+
+        		//start game timer
+		if (!createjs.Ticker.hasEventListener("tick")) {
+			createjs.Ticker.addEventListener("tick", tick);
+		}
+
+	}
+
+	function drawSmiley() {
+	    var s = new createjs.Shape();
+	    var g = s.graphics;
+
+	    //Head
+	    g.setStrokeStyle(3, 'round', 'round');
+	    g.beginStroke("#000");
+	    g.beginFill("#080");
+	    g.drawCircle(50, 50, 30); //55,53
+	    g.endFill();
+	    g.setStrokeStyle(1, 'round', 'round');
+
+	    return s;
+	}
+
+    function Tile() {
+	    var s = new createjs.Shape();
+	    var g = s.graphics;
+
+	    //Head
+	    g.setStrokeStyle(3, 'round', 'round');
+	    g.beginStroke("#555");
+	    g.beginFill("#999");
+	    g.drawRect(0, 0, 50, 50); //55,53
+	    g.endFill();
+	    g.setStrokeStyle(1, 'round', 'round');
+
+	    return s;
+	}
+
+    //allow for WASD and arrow control scheme
+	function handleKeyDown(e) {
+		//cross browser issues exist
+		if(!e){ var e = window.event; }
+		switch(e.keyCode) {
+			case KEYCODE_SPACE: break;
+
+			case KEYCODE_A: xVel = -speed; right = false; break;
+			case KEYCODE_D: xVel = speed;  right = true; break;
+			case KEYCODE_W: yVel = -speed; down = false; break;
+            case KEYCODE_S: yVel = speed; down = true;  break;
+		}
+	}
+
+	function handleKeyUp(e) {
+		//cross browser issues exist
+		if(!e){ var e = window.event; }
+		switch(e.keyCode) {
+			case KEYCODE_SPACE: break;
+
+			case KEYCODE_A: if(!right) xVel = 0; break;
+			case KEYCODE_D: if(right) xVel = 0; break;
+			case KEYCODE_W: if(!down) yVel = 0; break;
+            case KEYCODE_S: if(down) yVel = 0; break;
+		}
+	}
+
+
+    function tick(event) {
+
+        //var colliding = false;
+        var colH = false;
+        var colV = false;
+/*
+    for(var i = 0; i < tiles.length; i++){
+        if(((smiley.x + xVel < tiles[i].x + 30) &&
+            (smiley.x + xVel  > tiles[i].x - 80))
+                &&
+           ((smiley.y + yVel  < tiles[i].y + 30 ) &&
+            (smiley.y + yVel > tiles[i].y - 80 )))
+
+        {
+            colliding = true;
+            //console.log("colliding");
+           // xVel = 0;
+           // yVel = 0;
+        }
+        */
+
+        for(var i = 0; i < tiles.length; i++){
+            if(((smiley.x + xVel < tiles[i].x + 30) &&
+                (smiley.x + xVel  > tiles[i].x - 80))
+                    &&
+               ((smiley.y  < tiles[i].y + 30 ) &&
+                (smiley.y  > tiles[i].y - 80 )))
+
+            {
+                colH = true;
+            }
+            if(((smiley.x < tiles[i].x + 30) &&
+                (smiley.x  > tiles[i].x - 80))
+                    &&
+               ((smiley.y + yVel  < tiles[i].y + 30 ) &&
+                (smiley.y + yVel > tiles[i].y - 80 )))
+
+            {
+               colV = true;
+            }
+        }
+        /*
+        if(!colliding){
+             smiley.x += xVel;
+             smiley.y += yVel;
+        }
+        */
+        if(!colH){
+            smiley.x += xVel;
+        }
+        if(!colV){
+            smiley.y += yVel;
+        }
+
+       // if(colliding && xVel == 0){
+       //      smiley.y += yVel;
+       // }
+
+            //xVel *= .8;
+           // yVel *= .8;
+
+
+        stage.update(event);
+    }
+	</script>
+
+</head>
+<body onload="init()">
+
+	<header id="header" class="EaselJS">
+	    <p>Top down game</p>
+	</header>
+
+	<canvas id="myCanvas" width="1100" height="700"></canvas>
+
+</body>
+</html>
