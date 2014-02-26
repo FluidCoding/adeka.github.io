@@ -108,6 +108,7 @@
             var tile = new Tile(type);
             tile.s.x = xPos * 50 + 400;
             tile.s.y = yPos * 50 + 400;
+            //tile.s.set({:0});
 
             if(decalNoise > 9 && type == 0){
                 var decal = new Decal(0);
@@ -191,7 +192,7 @@
                         var tilex = tiles[i].s.x + stage.x;
                         var tiley = tiles[i].s.y + stage.y;
                         var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 400, 2));
-                        if(distance < 60){
+                        if(distance < 55){
                             tiles[i].UseDecal();
                         }
                     }
