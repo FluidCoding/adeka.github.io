@@ -33,7 +33,7 @@
 	<script type="text/javascript" src="src/easeljs/ui/Touch.js"></script>
 	<script type="text/javascript" src="src/easeljs/utils/SpriteSheetUtils.js"></script>
 	<script type="text/javascript" src="src/easeljs/utils/SpriteSheetBuilder.js"></script>
-
+    <script type="text/javascript" src="src/simplex-noise.js"></script>
 	<!-- We also provide hosted minified versions of all CreateJS libraries.
 	  http://code.createjs.com -->
 
@@ -91,7 +91,7 @@
     var tiles = [];
     var smiley;
     var moving = false;
-    var speed = 6;
+    var speed = 3;
 
     var KEYCODE_ENTER = 13;
 	var KEYCODE_SPACE = 32;
@@ -131,22 +131,32 @@
 		smiley.y = 400;
 	    stage.addChild(smiley);
 
-        var xPos = 0, yPos = 0;
-        for(var i=0;i<level.length;i++){
+        var simplex = new SimplexNoise();
 
-                if(i%80 == 0){
+        var xPos = 0, yPos = 0;
+        for(var i=0;i< 200000;i++){
+//      for(var i=0;i< 50000;i++){
+                if(i%447 == 0){
                     xPos = 0;
                     yPos += 1;
                 }
                 else{
                     xPos += 1;
                 }
-            var tile = new Tile(level[i]);
-                tile.s.x = xPos * 50;
-                tile.s.y = yPos * 50;
+            var type;
+            var noise = simplex.noise2D(xPos, yPos) * 10;
+            if(noise > 3){
+                type = 1;
+            }
+            else{
+                type = 0;
+            }
+            var tile = new Tile(type);
+            tile.s.x = xPos * 50 + 400;
+            tile.s.y = yPos * 50 + 400;
 
-                stage.update();
-                tiles.push(tile);
+            stage.update();
+            tiles.push(tile);
 
 
         }
@@ -186,7 +196,7 @@
         switch (type)
         {
             case 0:
-                s = new createjs.Bitmap("assets/floor.png");
+                s = new createjs.Bitmap("assets/grass.png");
                 break;
             case 1:
                 s = new createjs.Bitmap("assets/block.png");
@@ -225,7 +235,7 @@
 
 
     function tick(event) {
-
+        stage.removeAllChildren();
         var colH = false;
         var colV = false;
         for(var i = 0; i < tiles.length; i++){
@@ -234,11 +244,12 @@
             var tiley = tiles[i].s.y + stage.y;
             var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 400, 2));
 
-            if(distance > 500){
-                stage.removeChild(tiles[i].s);
+            if(distance < 500){
+                stage.addChild(tiles[i].s);
+               // stage.removeChild(tiles[i].s);
             }
             else{
-                stage.addChild(tiles[i].s);
+                //stage.addChild(tiles[i].s);
                 //tiles[i].x += Math.random() % 10;
             }
 
