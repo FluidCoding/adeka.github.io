@@ -34,6 +34,8 @@
 	<script type="text/javascript" src="src/easeljs/utils/SpriteSheetUtils.js"></script>
 	<script type="text/javascript" src="src/easeljs/utils/SpriteSheetBuilder.js"></script>
     <script type="text/javascript" src="src/simplex-noise.js"></script>
+	<script type="text/javascript" src="src/easeljs/filters/ColorFilter.js"></script>
+	<script type="text/javascript" src="src/easeljs/filters/ColorMatrixFilter.js"></script>
 	<!-- We also provide hosted minified versions of all CreateJS libraries.
 	  http://code.createjs.com -->
 
@@ -58,6 +60,7 @@
     var xVel = 0;
     var yVel = 0;
     var right = false, down = false;
+    var counter = 0;
 	document.onkeydown = handleKeyDown;
 	document.onkeyup = handleKeyUp;
 
@@ -86,7 +89,7 @@
         var simplex = new SimplexNoise();
         var simplex2 = new SimplexNoise();
 
-        var mapSize = 20;
+        var mapSize = 200;
         var tileCount = mapSize*mapSize;
         var xPos = 0, yPos = 0;
 
@@ -100,19 +103,20 @@
             }
             var type;
             var blurNoise = simplex.noise2D(xPos/20, yPos/20) * 10;
+            var landNoise = simplex.noise2D(xPos/8, yPos/8) * 15;
             var noise = simplex.noise2D(xPos, yPos) * 10;
             var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
             var yOffset = 0;
             if(blurNoise > 4){
                 type = 2;
-                yOffset = 8;
+                yOffset = 13;
             }
            // else if(noise > 3){
                // type = 1;
            // }
             else{
                 type = 0;
-                yOffset = noise;
+                yOffset = landNoise;
             }
             var tile = new Tile(type);
            // tile.s.setTransform(0,0,1,1,noise/5,0,0,0,0);
@@ -122,6 +126,10 @@
             if(type == 0){
                 if(decalNoise > 9){
                 var decal = new Decal(0);
+                tile.AddDecal(decal);
+                }
+                else if(landNoise > 8){
+                var decal = new Decal(2);
                 tile.AddDecal(decal);
                 }
                 else if(noise > 3){
@@ -159,6 +167,11 @@
         {
             case 0:
                 s = new createjs.Bitmap("assets/grass.png");
+               // var tint = new createjs.ColorFilter(1,0,0,1); // (red, green, blue, alpha)
+	           // var bmp = s.clone();
+	        	//bmp.filters = [tint];
+	        	//bmp.cache(s.x, s.y, 50, 50);
+                 //   s = bmp;
                 break;
             case 1:
                 s = new createjs.Bitmap("assets/rock.png");
@@ -171,8 +184,8 @@
         this.AddDecal = AddDecal;
         function AddDecal(decal){
             this.decal = decal;
-            decal.s.x = s.x + 10;
-            decal.s.y = s.y + 10;
+            decal.s.x = s.x + 25;
+            decal.s.y = s.y + 30;
 
         }
         this.UseDecal = function UseDecal(){
@@ -184,6 +197,7 @@
     function Decal(type) {
         this.type = type;
         var s;
+        this.rando = Math.random() * 2;
         switch (type)
         {
             case 0:
@@ -191,13 +205,26 @@
                 break;
             case 1:
                s = new createjs.Bitmap("assets/tree.png");
-                                    //setTransform ( [x=0]  [y=0]  [scaleX=1]  [scaleY=1]  [rotation=0]  [skewX=0]  [skewY=0]  [regX=0]  [regY=0] )
-                s.setTransform(0,0,1,1,0,0,0,10,60);
+               var rand = Math.random() + .8;
+              //setTransform ( [x=0]  [y=0]  [scaleX=1]  [scaleY=1]  [rotation=0]  [skewX=0]  [skewY=0]  [regX=0]  [regY=0] )
+                s.setTransform(0,0,rand,rand,0,0,0,25,80);
                 break;
+            case 2:
+                var rand = Math.random()/2 + .8;
+                s = new createjs.Bitmap("assets/rock.png");
+                s.setTransform(0,0,rand,rand,0,0,0,10,60);
+                break
         }
         this.s = s;
         this.Use = function Use(){
             //
+        }
+        this.Update = function Update(){
+            if(this.type == 1){
+               // s.set({regX : 25, regY : 100});
+                s.set({skewX : -1 + Math.sin((counter)/25 + this.rando) * 3});
+                s.set({skewY : -1 + Math.sin((counter)/10 + this.rando) * 2});
+            }
         }
 	}
 
@@ -243,6 +270,7 @@
 
 
     function tick(event) {
+        counter++;
         stage.removeAllChildren();
         var colH = false;
         var colV = false;
@@ -269,6 +297,7 @@
             if(distance < 600){
                 if(tiles[i].decal != null){
                     stage.addChild(tiles[i].decal.s);
+                    tiles[i].decal.Update();
                 }
             }
         }
@@ -308,7 +337,7 @@
 <body onload="init()">
 
 	<header id="header" class="EaselJS">
-	    <p>Top down game</p>
+	    <p>W A S D - keys to move, use F to destroy stuff</p>
 	</header>
 
 	<canvas id="myCanvas" width="800" height="800"></canvas>
