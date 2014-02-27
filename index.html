@@ -86,20 +86,27 @@
         var simplex = new SimplexNoise();
         var simplex2 = new SimplexNoise();
 
+        var mapSize = 500;
+        var tileCount = 250000;
         var xPos = 0, yPos = 0;
-        for(var i=0;i< 200000;i++){
-//      for(var i=0;i< 50000;i++){
-                if(i%447 == 0){
-                    xPos = 0;
-                    yPos += 1;
-                }
-                else{
-                    xPos += 1;
-                }
+
+        for(var i=0;i< tileCount;i++){
+            if(i % mapSize == 0){
+                xPos = 0;
+                yPos += 1;
+            }
+            else{
+                xPos += 1;
+            }
             var type;
+            var blurNoise = simplex.noise2D(xPos/20, yPos/20) * 10;
             var noise = simplex.noise2D(xPos, yPos) * 10;
             var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
-            if(noise > 3){
+
+            if(blurNoise > 4){
+                type = 2;
+            }
+            else if(noise > 3){
                 type = 1;
             }
             else{
@@ -115,7 +122,7 @@
                 tile.AddDecal(decal);
             }
 
-            stage.update();
+           // stage.update();
             tiles.push(tile);
 
 
@@ -147,6 +154,9 @@
                 break;
             case 1:
                 s = new createjs.Bitmap("assets/block.png");
+                break;
+            case 2:
+                s = new createjs.Bitmap("assets/water.png");
                 break;
         }
         this.s = s;
@@ -242,22 +252,18 @@
         }
         for(var i = 0; i < tiles.length; i++){
 
-            if(tiles[i].type == 1 || tiles[i].decal){
+            if(tiles[i].type == 1 || tiles[i].decal || tiles[i].type == 2){
                 if(((smiley.x + xVel < tiles[i].s.x + 40) &&
-                    (smiley.x + xVel  > tiles[i].s.x - 40))
-                        &&
-                   ((smiley.y  < tiles[i].s.y + 40 ) &&
-                    (smiley.y  > tiles[i].s.y - 50 )))
-
+                    (smiley.x + xVel > tiles[i].s.x - 40)) &&
+                   ((smiley.y < tiles[i].s.y + 40 ) &&
+                    (smiley.y > tiles[i].s.y - 50 )))
                 {
                     colH = true;
                 }
                 if(((smiley.x < tiles[i].s.x + 40) &&
-                    (smiley.x  > tiles[i].s.x - 40))
-                        &&
+                    (smiley.x > tiles[i].s.x - 40)) &&
                    ((smiley.y + yVel  < tiles[i].s.y + 40 ) &&
                     (smiley.y + yVel > tiles[i].s.y - 50 )))
-
                 {
                    colV = true;
                 }
