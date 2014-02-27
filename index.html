@@ -3,7 +3,7 @@
 <head>
 	<title>Kewl top Down shit</title>
 
-	<link href="assets/demoStyles.css" rel="stylesheet" type="text/css" />
+	//<link href="assets/demoStyles.css" rel="stylesheet" type="text/css" />
 
 	<!-- Note: All core EaselJS classes are listed here: -->
 	<script type="text/javascript" src="src/createjs/events/Event.js"></script>
@@ -111,9 +111,6 @@
                 type = 2;
                 yOffset = 13;
             }
-           // else if(noise > 3){
-               // type = 1;
-           // }
             else{
                 type = 0;
                 yOffset = landNoise;
@@ -121,7 +118,7 @@
             var tile = new Tile(type);
            // tile.s.setTransform(0,0,1,1,noise/5,0,0,0,0);
             //tile.s.set({:0});
-            tile.s.x = xPos * 50 + 400;
+            tile.s.x = xPos * 50 + 400 + tile.xOffset;
             tile.s.y = yPos * 50 + 400 + yOffset;
             if(type == 0){
                 if(decalNoise > 9){
@@ -161,12 +158,15 @@
 	}
 
     function Tile(type) {
+        this.xOffset = 0;
         this.type = type;
         var s;
+         this.rando = Math.random() * 2;
         switch (type)
         {
             case 0:
                 s = new createjs.Bitmap("assets/grass.png");
+                //s.set({alpha :.6});
                // var tint = new createjs.ColorFilter(1,0,0,1); // (red, green, blue, alpha)
 	           // var bmp = s.clone();
 	        	//bmp.filters = [tint];
@@ -175,22 +175,32 @@
                 break;
             case 1:
                 s = new createjs.Bitmap("assets/rock.png");
+
                 break;
             case 2:
                 s = new createjs.Bitmap("assets/water.png");
+                s.set({alpha :.3, regX : 0});
+                //this.xOffset = 25;
                 break;
         }
         this.s = s;
         this.AddDecal = AddDecal;
         function AddDecal(decal){
             this.decal = decal;
-            decal.s.x = s.x + 25;
-            decal.s.y = s.y + 30;
+            decal.s.x = s.x + decal.xOffset;
+            decal.s.y = s.y + decal.yOffset;
 
         }
         this.UseDecal = function UseDecal(){
             this.decal.Use();
             this.decal = null;
+        }
+        this.Update = function Update(){
+            if(this.type == 2){
+                s.set({alpha :.3 + Math.sin((counter)/50 + this.rando)/20});
+               // s.set({skewX : -1 + Math.sin((counter)/25) * 4});
+                //s.set({skewY : -1 + Math.sin((counter)/25) * 4});
+            }
         }
 	}
 
@@ -202,17 +212,23 @@
         {
             case 0:
                 s = new createjs.Bitmap("assets/brownchest.gif");
+                    this.xOffset = 10;
+                    this.yOffset = 10;
                 break;
             case 1:
                s = new createjs.Bitmap("assets/tree.png");
                var rand = Math.random() + .8;
               //setTransform ( [x=0]  [y=0]  [scaleX=1]  [scaleY=1]  [rotation=0]  [skewX=0]  [skewY=0]  [regX=0]  [regY=0] )
                 s.setTransform(0,0,rand,rand,0,0,0,25,80);
+                    this.xOffset = 25;
+                    this.yOffset = 30;
                 break;
             case 2:
                 var rand = Math.random()/2 + .8;
                 s = new createjs.Bitmap("assets/rock.png");
                 s.setTransform(0,0,rand,rand,0,0,0,10,60);
+                this.xOffset = 10;
+                this.yOffset = 10;
                 break
         }
         this.s = s;
@@ -281,6 +297,7 @@
             var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 400, 2));
             if(distance < 600){
                 stage.addChild(tiles[i].s);
+                tiles[i].Update();
             }
         }
         for(var i = 0; i < tiles.length; i++){
