@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f29879ed-c439-471a-bcb6-73a6a39a3a0a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Thumbs.db" afterPath="$PROJECT_DIR$/assets/Thumbs.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/floor.psd" afterPath="$PROJECT_DIR$/assets/floor.psd" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="adeka.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +29,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="13" selection-start="4464" selection-end="4464" vertical-scroll-proportion="0.6268657" vertical-offset="1562" max-vertical-offset="5100">
+            <state line="273" column="0" selection-start="8802" selection-end="8802" vertical-scroll-proportion="0.43398392" vertical-offset="4263" max-vertical-offset="5440">
               <folding />
             </state>
           </provider>
@@ -327,7 +325,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="13" selection-start="4464" selection-end="4464" vertical-scroll-proportion="0.6268657" vertical-offset="1562" max-vertical-offset="5100">
+        <state line="273" column="0" selection-start="8802" selection-end="8802" vertical-scroll-proportion="0.43398392" vertical-offset="4263" max-vertical-offset="5440">
           <folding />
         </state>
       </provider>

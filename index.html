@@ -106,9 +106,9 @@
             if(blurNoise > 4){
                 type = 2;
             }
-            else if(noise > 3){
-                type = 1;
-            }
+           // else if(noise > 3){
+               // type = 1;
+           // }
             else{
                 type = 0;
             }
@@ -117,9 +117,15 @@
             tile.s.y = yPos * 50 + 400;
             //tile.s.set({:0});
 
-            if(decalNoise > 9 && type == 0){
+            if(type == 0){
+                if(decalNoise > 9){
                 var decal = new Decal(0);
                 tile.AddDecal(decal);
+                }
+                else if(noise > 3){
+                var decal = new Decal(1);
+                tile.AddDecal(decal);
+                }
             }
 
            // stage.update();
@@ -153,7 +159,7 @@
                 s = new createjs.Bitmap("assets/grass.png");
                 break;
             case 1:
-                s = new createjs.Bitmap("assets/block.png");
+                s = new createjs.Bitmap("assets/rock.png");
                 break;
             case 2:
                 s = new createjs.Bitmap("assets/water.png");
@@ -165,6 +171,7 @@
             this.decal = decal;
             decal.s.x = s.x + 10;
             decal.s.y = s.y + 10;
+
         }
         this.UseDecal = function UseDecal(){
             this.decal.Use();
@@ -181,7 +188,9 @@
                 s = new createjs.Bitmap("assets/brownchest.gif");
                 break;
             case 1:
-               // s = new createjs.Bitmap("assets/block.png");
+               s = new createjs.Bitmap("assets/tree.png");
+                                    //setTransform ( [x=0]  [y=0]  [scaleX=1]  [scaleY=1]  [rotation=0]  [skewX=0]  [skewY=0]  [regX=0]  [regY=0] )
+                s.setTransform(0,0,1,1,0,0,0,10,60);
                 break;
         }
         this.s = s;
@@ -235,34 +244,44 @@
         stage.removeAllChildren();
         var colH = false;
         var colV = false;
+        var heroDrawn = false;
+        for(var i = 0; i < tiles.length; i++){
+            var tilex = tiles[i].s.x + stage.x;
+            var tiley = tiles[i].s.y + stage.y;
+            var distance = Math.sqrt(Math.pow( tilex - 500, 2) + Math.pow( tiley - 443, 2));
+            if(distance < 500){
+                stage.addChild(tiles[i].s);
+            }
+        }
         for(var i = 0; i < tiles.length; i++){
 
             var tilex = tiles[i].s.x + stage.x;
             var tiley = tiles[i].s.y + stage.y;
-            var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 400, 2));
-
+            var distance = Math.sqrt(Math.pow( tilex - 500, 2) + Math.pow( tiley - 443, 2));
+            if(distance < 50){
+              if(!heroDrawn){
+                stage.addChild(smiley);
+                heroDrawn = true;
+              }
+            }
             if(distance < 500){
-                stage.addChild(tiles[i].s);
                 if(tiles[i].decal != null){
                     stage.addChild(tiles[i].decal.s);
                 }
             }
-
-
         }
         for(var i = 0; i < tiles.length; i++){
-
             if(tiles[i].type == 1 || tiles[i].decal || tiles[i].type == 2){
                 if(((smiley.x + xVel < tiles[i].s.x + 40) &&
                     (smiley.x + xVel > tiles[i].s.x - 40)) &&
-                   ((smiley.y < tiles[i].s.y + 40 ) &&
+                   ((smiley.y < tiles[i].s.y + 15 ) &&
                     (smiley.y > tiles[i].s.y - 50 )))
                 {
                     colH = true;
                 }
                 if(((smiley.x < tiles[i].s.x + 40) &&
                     (smiley.x > tiles[i].s.x - 40)) &&
-                   ((smiley.y + yVel  < tiles[i].s.y + 40 ) &&
+                   ((smiley.y + yVel  < tiles[i].s.y + 15 ) &&
                     (smiley.y + yVel > tiles[i].s.y - 50 )))
                 {
                    colV = true;
@@ -277,7 +296,8 @@
             smiley.y += yVel;
             stage.y -= yVel;
         }
-        stage.addChild(smiley);
+
+
         stage.update(event);
     }
 	</script>
