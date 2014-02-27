@@ -196,7 +196,10 @@
             this.decal = null;
         }
         this.Update = function Update(){
+
             if(this.type == 2){
+               // s.set({scaleX : 1 + Math.sin((counter)/50 + this.rando)/10})*2;
+               //  s.set({scaleY : 1 + Math.sin((counter)/50 + this.rando)/1000});
                 s.set({alpha :.3 + Math.sin((counter)/50 + this.rando)/20});
                // s.set({skewX : -1 + Math.sin((counter)/25) * 4});
                 //s.set({skewY : -1 + Math.sin((counter)/25) * 4});
@@ -286,6 +289,7 @@
 
 
     function tick(event) {
+        //stage.set({rotation : 33});
         counter++;
         stage.removeAllChildren();
         var colH = false;
