@@ -86,8 +86,8 @@
         var simplex = new SimplexNoise();
         var simplex2 = new SimplexNoise();
 
-        var mapSize = 500;
-        var tileCount = 250000;
+        var mapSize = 20;
+        var tileCount = mapSize*mapSize;
         var xPos = 0, yPos = 0;
 
         for(var i=0;i< tileCount;i++){
@@ -102,21 +102,23 @@
             var blurNoise = simplex.noise2D(xPos/20, yPos/20) * 10;
             var noise = simplex.noise2D(xPos, yPos) * 10;
             var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
-
+            var yOffset = 0;
             if(blurNoise > 4){
                 type = 2;
+                yOffset = 8;
             }
            // else if(noise > 3){
                // type = 1;
            // }
             else{
                 type = 0;
+                yOffset = noise;
             }
             var tile = new Tile(type);
-            tile.s.x = xPos * 50 + 400;
-            tile.s.y = yPos * 50 + 400;
+           // tile.s.setTransform(0,0,1,1,noise/5,0,0,0,0);
             //tile.s.set({:0});
-
+            tile.s.x = xPos * 50 + 400;
+            tile.s.y = yPos * 50 + 400 + yOffset;
             if(type == 0){
                 if(decalNoise > 9){
                 var decal = new Decal(0);
@@ -248,8 +250,8 @@
         for(var i = 0; i < tiles.length; i++){
             var tilex = tiles[i].s.x + stage.x;
             var tiley = tiles[i].s.y + stage.y;
-            var distance = Math.sqrt(Math.pow( tilex - 500, 2) + Math.pow( tiley - 443, 2));
-            if(distance < 500){
+            var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 400, 2));
+            if(distance < 600){
                 stage.addChild(tiles[i].s);
             }
         }
@@ -257,14 +259,14 @@
 
             var tilex = tiles[i].s.x + stage.x;
             var tiley = tiles[i].s.y + stage.y;
-            var distance = Math.sqrt(Math.pow( tilex - 500, 2) + Math.pow( tiley - 443, 2));
+            var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 450, 2));
             if(distance < 50){
               if(!heroDrawn){
                 stage.addChild(smiley);
                 heroDrawn = true;
               }
             }
-            if(distance < 500){
+            if(distance < 600){
                 if(tiles[i].decal != null){
                     stage.addChild(tiles[i].decal.s);
                 }
