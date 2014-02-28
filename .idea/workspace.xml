@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29879ed-c439-471a-bcb6-73a6a39a3a0a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Thumbs.db" afterPath="$PROJECT_DIR$/assets/Thumbs.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/floor.psd" afterPath="$PROJECT_DIR$/assets/floor.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/grass.png" afterPath="$PROJECT_DIR$/assets/grass.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/tree.psd" afterPath="$PROJECT_DIR$/assets/tree.psd" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="adeka.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +28,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="43" selection-start="5142" selection-end="5142" vertical-scroll-proportion="-3.0555556" vertical-offset="4880" max-vertical-offset="6188">
+            <state line="249" column="55" selection-start="8759" selection-end="8759" vertical-scroll-proportion="0.7068558" vertical-offset="3635" max-vertical-offset="6630">
               <folding />
             </state>
           </provider>
@@ -329,7 +324,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="43" selection-start="5142" selection-end="5142" vertical-scroll-proportion="-3.0555556" vertical-offset="4880" max-vertical-offset="6188">
+        <state line="249" column="55" selection-start="8759" selection-end="8759" vertical-scroll-proportion="0.7068558" vertical-offset="3635" max-vertical-offset="6630">
           <folding />
         </state>
       </provider>

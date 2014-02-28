@@ -208,7 +208,7 @@
         }
         this.Update = function Update(){
 
-            if(this.type == 2){
+            if(this.type == 3){
                // s.set({scaleX : 1 + Math.sin((counter)/50 + this.rando)/10})*2;
                //  s.set({scaleY : 1 + Math.sin((counter)/50 + this.rando)/1000});
                 s.set({alpha :.3 + Math.sin((counter)/50 + this.rando)/20});
@@ -247,7 +247,9 @@
             case 3:
                 var rand = Math.random()/2 + .9;
                 s = new createjs.Bitmap("assets/pine.png");
-                s.setTransform(0,0,rand,rand,0,0,0,10,60);
+                s.setTransform(0,0,rand,rand,0,0,0,20,80);
+                this.xOffset = 25;
+                this.yOffset = 30;
                 break
         }
         this.s = s;
