@@ -67,23 +67,28 @@ function Hero() {
             else{
                 hero.Face("stop");
             }
+
             if(this.incY < this.yOffset){
-                this.incY+=3;
+                //this.incY = this.yOffset;
+                this.incY+= 3.0;
                 this.falling = true;
             }
+
             if(this.incY > this.yOffset){
-                this.incY-=1.5;
+                this.incY-= 2.0;
+                this.falling = true;
             }
             if(this.incY == this.yOffset){
                 this.falling = false;
             }
-            this.s.set({regY : Math.sin(this.jumpCounter/10)*35});
-            //this.anims.gotoAndPlay(this.dir);
+
+
             this.shadow.x = this.s.x;
             this.shadow.y = this.s.y;
-            //if(this.s)
-            if(this.jumpCounter >= 15){
+
+            if(this.jumpCounter >= 13){
                 this.falling = true;
+               // this.incY = this.yOffset;
             }
             if(this.jumpCounter >= 31){
                     this.jumping = false;
@@ -94,7 +99,7 @@ function Hero() {
 
                     this.jumpCounter++;
                    // this.s.y++;
-                    this.newY = Math.sin(this.jumpCounter/10)*35;
+                    this.newY = Math.sin(this.jumpCounter/10)*40;
                    // this.s.set({regY : this.newY});
 
             }

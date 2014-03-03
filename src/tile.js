@@ -37,7 +37,7 @@
         function AddDecal(decal){
             this.decal = decal;
             decal.s.x = s.x + decal.xOffset;
-            decal.s.y = s.y + decal.yOffset;
+            decal.s.y = s.y + decal.yOffset - this.yOffset;
 
         }
         this.UseDecal = function UseDecal(){
