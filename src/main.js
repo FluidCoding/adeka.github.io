@@ -6,7 +6,7 @@ var canvas;
     var tiles = [];
     var hero;
     //var moving = false;
-   
+    var speed = 1.5;
    // var wolf;
 
     var KEYCODE_ENTER = 13;
@@ -81,22 +81,23 @@ var canvas;
             //tile.s.set({:0});
             tile.s.x = xPos * 50 + 400 + tile.xOffset;
             tile.s.y = yPos * 50 + 400 + yOffset;
-            if(type == 0 || type == 2){
-                if(decalNoise > 9){
-                var decal = new Decal(0);
-                tile.AddDecal(decal);
+            if(type != 3){
+                if(decalNoise > 8){
+                //chests
+                //var decal = new Decal(0);
+                //tile.AddDecal(decal);
                 }
                 else if(landNoise > 8){
-               // var decal = new Decal(2);
+                var decal = new Decal(2);
                 //tile.AddDecal(decal);
                 }
                 else if(landNoise > 5){
-                  var decal = new Decal(3);
+                var decal = new Decal(3);
                 tile.AddDecal(decal);
                 }
                 else if(noise > 3){
                 var decal = new Decal(1);
-                tile.AddDecal(decal);
+               // tile.AddDecal(decal);
                 }
             }
            // stage.update();
@@ -234,11 +235,18 @@ var canvas;
                 }
             }
         }
+        var xOffset = 0;
+        if(hero.dir == "right" && hero.currentType != 4){
+            xOffset = 10;
+        }
+        else if(hero.dir == "left" && hero.currentType == 4){
+            xOffset = 25;
+        }
          for(var i = 0; i < tiles.length; i++){
-                if(((hero.s.x + 18 <= tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 >= tiles[i].s.x - 0)) &&
-                   ((hero.s.y + 45 <= tiles[i].s.y + 75 + tiles[i].yOffset ) &&
-                    (hero.s.y + 45 >= tiles[i].s.y)))
+                if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
+                    (hero.s.x + 18 > tiles[i].s.x - xOffset)) &&
+                   ((hero.s.y + 45 < tiles[i].s.y + 75 + tiles[i].yOffset ) &&
+                    (hero.s.y + 45 > tiles[i].s.y)))
                 {
                     hero.currentType = tiles[i].type;
                     hero.currentTile = tiles[i];
@@ -248,7 +256,7 @@ var canvas;
         for(var i = 0; i < tiles.length; i++){
            // if(tiles[i].type == 1 || tiles[i].decal || (tiles[i].type == 3 && !hero.jumping) || (tiles[i].type == 4 && !hero.jumping) && hero.currentType != 4){
            if(tiles[i].type == 1 || (tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
-               tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping){
+               tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling){
                 if(((hero.s.x + hero.xVel < tiles[i].s.x + 40) &&
                     (hero.s.x + hero.xVel > tiles[i].s.x - 40)) &&
                    ((hero.s.y < tiles[i].s.y + 15 ) &&
