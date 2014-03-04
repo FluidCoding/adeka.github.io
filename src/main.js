@@ -110,7 +110,7 @@ var canvas;
 		if (!createjs.Ticker.hasEventListener("tick")) {
 			createjs.Ticker.addEventListener("tick", tick);
 		}
-        //createjs.Ticker.setInterval(1);
+        createjs.Ticker.setInterval(1);
         createjs.Ticker.setFPS(60);
 	    //stage.update();
 	}
@@ -176,13 +176,13 @@ var canvas;
 		}
 	}
 
+    //main update loop
     function tick(event) {
         counter++;
         stage.removeAllChildren();
-        var colH = false;
-        var colV = false;
         hero.isDrawn = false;
 
+        //define collision offset based on current direction
         var xOffset = 0;
         if(hero.dir == "right" && hero.currentType != 4){
             xOffset = 10;
@@ -190,6 +190,8 @@ var canvas;
         else if(hero.dir == "left" && hero.currentType == 4){
             xOffset = 25;
         }
+
+        //decal collisions
         for(var i = 0; i < tiles.length; i++){
              if( tiles[i].decal ){
                 var dx = tiles[i].decal.s.x - tiles[i].decal.xOffset;
@@ -202,17 +204,19 @@ var canvas;
                 var xdistance = Math.sqrt(Math.pow( dx - vhx, 2) + Math.pow( dy - hy, 2));
                 var ydistance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - vhy, 2));
                  if(xdistance < 25){
-                     colH = true;
+                     hero.colH = true;
                  }
                  if(ydistance < 25){
-                     colV = true;
+                     hero.colV = true;
                  }
                  if(distance <= 25){
+                     //caught
                       hero.s.y += 2;
                  }
             }
         }
 
+        //detect the tile directly underneath the hero
          for(var i = 0; i < tiles.length; i++){
                 if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
                     (hero.s.x + 18 > tiles[i].s.x - xOffset)) &&
@@ -226,6 +230,7 @@ var canvas;
                 }
          }
 
+        //tile collision
         for(var i = 0; i < tiles.length; i++){
             //(tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
            if((tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
@@ -236,32 +241,19 @@ var canvas;
                    ((hero.s.y < tiles[i].s.y + 15 ) &&
                     (hero.s.y > tiles[i].s.y - 50 )))
                 {
-                    colH = true;
+                    hero.colH = true;
                 }
                 if(((hero.s.x < tiles[i].s.x + 32) &&
                     (hero.s.x > tiles[i].s.x - 32)) &&
                    ((hero.s.y + hero.yVel  < tiles[i].s.y + 15 ) &&
                     (hero.s.y + hero.yVel > tiles[i].s.y - 50 )))
                 {
-                   colV = true;
+                   hero.colV = true;
                 }
             }
         }
 
-        if(!hero.falling)
-        {
-            if(!colH){
-                hero.s.x += hero.xVel;
-            }
-            if(!colV){
-                hero.s.y += hero.yVel;
-            }
-        }
-        else{
-            hero.s.x += hero.xVel;
-            hero.s.y += hero.yVel;
-        }
-
+        //move screen to center on hero
         if(-stage.x < hero.s.x - 400){
            stage.x-= hero.speed;
         }
@@ -275,6 +267,7 @@ var canvas;
            stage.y+= hero.speed;
         }
 
+        //draw everything in the right order
         for(var i = 0; i < tiles.length; i++){
             var tilex = tiles[i].s.x + stage.x;
             var tiley = tiles[i].s.y + stage.y;

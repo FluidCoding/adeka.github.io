@@ -13,11 +13,13 @@ function Hero() {
         this.incY = 0;
         this.curOpacity = 1.0;
         this.drowning = false;
-        this.speed = 2.2;
+
+        this.originalSpeed = 1.6;
+        this.speed = this.originalSpeed;
         this.rootStage;
         this.nextTile;
-        //this.colH = false;
-        //this.colV = false;
+        this.colH = false;
+        this.colV = false;
         //32x24
         //this.s = new createjs.Bitmap("assets/hero.png");
 
@@ -69,7 +71,7 @@ function Hero() {
                 this.s.set({alpha: 1});
                 this.curOpacity = 1.0;
                 this.shadow.set({alpha: 1});
-                this.speed = 2.2;
+                this.speed = this.originalSpeed;
             }
             if(this.drowning){
                 this.curOpacity -= .05;
@@ -138,6 +140,24 @@ function Hero() {
             }
             this.s.set({regY : this.newY + this.incY});
             this.shadow.set({regY : this.yOffset});
+
+                        //actually moving the hero
+            if(!this.falling)
+            {
+                if(!this.colH){
+                    this.s.x += this.xVel;
+                }
+                if(!this.colV){
+                    this.s.y += this.yVel;
+                }
+            }
+            else{
+                this.s.x += this.xVel;
+                this.s.y += this.yVel;
+            }
+
+            this.colH = false;
+            this.colV = false;
 
         }
 
