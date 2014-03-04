@@ -15,6 +15,7 @@ function Hero() {
         this.drowning = false;
         this.speed = 2.2;
         this.rootStage;
+        this.nextTile;
         //this.colH = false;
         //this.colV = false;
         //32x24
@@ -82,22 +83,22 @@ function Hero() {
             else{
                 if(this.yVel > 0){
                     if(hero.dir != "down"){
-                    hero.Face("down");
+                        hero.Face("down");
                     }
                 }
                 else if(this.yVel < 0){
                     if(hero.dir != "up"){
-                    hero.Face("up");
+                        hero.Face("up");
                     }
                 }
                 else if(this.xVel > 0){
                     if(hero.dir != "right"){
-                    hero.Face("right");
+                        hero.Face("right");
                     }
                 }
                 else if(this.xVel < 0){
                     if(hero.dir != "left"){
-                    hero.Face("left");
+                        hero.Face("left");
                     }
                 }
                 else{
@@ -108,7 +109,7 @@ function Hero() {
                     this.falling = true;
                 }
                 if(this.incY > this.yOffset){
-                    this.incY-=1.5;
+                    this.incY-=3;
                 }
                 if(this.incY == this.yOffset){
                     this.falling = false;
@@ -144,9 +145,13 @@ function Hero() {
            // this.s.set({alpha: this.s.alpha -.1});
         }
         this.Face = function Face(dir){
+            // Fixes the animation freeze on from previous stop()
             if(dir == "stop"){
-                this.s.stop();
-            }else{
+                if (this.dir!="stop") {
+                    this.s.gotoAndPlay(this.dir);
+                }
+            }
+            else{
                 this.dir = dir;
                 var x = this.s.x, y = this.s.y;
                 this.s = new createjs.Sprite(this.anims, dir);
@@ -154,6 +159,7 @@ function Hero() {
                 this.s.y = y;
             }
         }
+
 	}/**
  * Created by gramp_000 on 3/2/14.
  */

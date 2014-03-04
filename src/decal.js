@@ -8,7 +8,7 @@
             case 0:
                 s = new createjs.Bitmap("assets/brownchest.gif");
                     this.xOffset = 10;
-                    this.yOffset = 10;
+                    this.yOffset = 0;
                 break;
             case 1:
                 s = new createjs.Bitmap("assets/tree.png");
