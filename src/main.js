@@ -77,8 +77,7 @@ var canvas;
                 yOffset = landNoise;
             }
             var tile = new Tile(type);
-           // tile.s.setTransform(0,0,1,1,noise/5,0,0,0,0);
-            //tile.s.set({:0});
+
             tile.s.x = xPos * 50 + 400 + tile.xOffset;
             tile.s.y = yPos * 50 + 400 + yOffset;
             if(type != 3){
@@ -141,16 +140,12 @@ var canvas;
     }
 */
 
-
-
-
     //allow for WASD and arrow control scheme
 	function handleKeyDown(e) {
 		//cross browser issues exist
 		if(!e){ var e = window.event; }
 		switch(e.keyCode) {
 			case KEYCODE_F:
-                   // console.log("f");
                 for(var i = 0; i < tiles.length; i++){
                     if(tiles[i].decal != null){
                         var tilex = tiles[i].s.x + stage.x;
@@ -161,8 +156,7 @@ var canvas;
                         }
                     }
                 }
-
-                break;
+            break;
             case KEYCODE_SPACE: hero.Jump(); break;
 			case KEYCODE_A: hero.xVel = -hero.speed; right = false; break;
 			case KEYCODE_D: hero.xVel = hero.speed;  right = true; break;
@@ -175,8 +169,6 @@ var canvas;
 		//cross browser issues exist
 		if(!e){ var e = window.event; }
 		switch(e.keyCode) {
-
-
 			case KEYCODE_A: if(!right) hero.xVel = 0; break;
 			case KEYCODE_D: if(right) hero.xVel = 0; break;
 			case KEYCODE_W: if(!down) hero.yVel = 0; break;
@@ -184,13 +176,7 @@ var canvas;
 		}
 	}
 
-
     function tick(event) {
-
-       // stage.update();
-
-        //stage.set({alpha:.6});
-        //stage.set({rotation : 33});
         counter++;
         stage.removeAllChildren();
         var colH = false;
@@ -204,6 +190,29 @@ var canvas;
         else if(hero.dir == "left" && hero.currentType == 4){
             xOffset = 25;
         }
+        for(var i = 0; i < tiles.length; i++){
+             if( tiles[i].decal ){
+                var dx = tiles[i].decal.s.x - tiles[i].decal.xOffset;
+                var dy = tiles[i].decal.s.y - tiles[i].decal.yOffset - 25 + tiles[i].yOffset;
+                var hx = hero.s.x;
+                var hy = hero.s.y;
+                var vhx = hero.s.x + hero.xVel;
+                var vhy = hero.s.y + hero.yVel;
+                var distance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - hy, 2));
+                var xdistance = Math.sqrt(Math.pow( dx - vhx, 2) + Math.pow( dy - hy, 2));
+                var ydistance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - vhy, 2));
+                 if(xdistance < 25){
+                     colH = true;
+                 }
+                 if(ydistance < 25){
+                     colV = true;
+                 }
+                 if(distance <= 25){
+                      hero.s.y += 2;
+                 }
+            }
+        }
+
          for(var i = 0; i < tiles.length; i++){
                 if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
                     (hero.s.x + 18 > tiles[i].s.x - xOffset)) &&
@@ -216,9 +225,10 @@ var canvas;
                     hero.yOffset = tiles[i].yOffset;
                 }
          }
+
         for(var i = 0; i < tiles.length; i++){
-           // if(tiles[i].type == 1 || tiles[i].decal || (tiles[i].type == 3 && !hero.jumping) || (tiles[i].type == 4 && !hero.jumping) && hero.currentType != 4){
-           if(tiles[i].type == 1 || (tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
+            //(tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
+           if((tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
                (tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
                (tiles[i].decal && hero.jumping)){
                 if(((hero.s.x + hero.xVel < tiles[i].s.x + 32) &&
@@ -236,48 +246,20 @@ var canvas;
                    colV = true;
                 }
             }
-          else if( tiles[i].decal){
-            var dx = tiles[i].decal.s.x - tiles[i].decal.xOffset;
-            var dy = tiles[i].decal.s.y - tiles[i].decal.yOffset - 25;
-            var hx = hero.s.x;
-            var hy = hero.s.y;
-            var vhx = hero.s.x + hero.xVel;
-            var vhy = hero.s.y + hero.yVel;
-            var distance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - hy, 2));
-            var xdistance = Math.sqrt(Math.pow( dx - vhx, 2) + Math.pow( dy - hy, 2));
-            var ydistance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - vhy, 2));
-             if(xdistance < 25){
-                 colH = true;
-             }
-             if(ydistance < 25){
-                 colV = true;
-             }
-             if(distance <= 25){
-                  hero.s.y += 2;
-             }
-        }
         }
 
-       // hero.colV = colV;
-       // hero.colH = colH;
         if(!hero.falling)
         {
             if(!colH){
                 hero.s.x += hero.xVel;
-                //stage.x -= hero.xVel;
             }
-
-
             if(!colV){
                 hero.s.y += hero.yVel;
-               // stage.y -= hero.yVel;
             }
         }
         else{
-                hero.s.x += hero.xVel;
-                //stage.x -= hero.xVel;
-                hero.s.y += hero.yVel;
-               // stage.y -= hero.yVel;
+            hero.s.x += hero.xVel;
+            hero.s.y += hero.yVel;
         }
 
         if(-stage.x < hero.s.x - 400){
@@ -296,27 +278,7 @@ var canvas;
         for(var i = 0; i < tiles.length; i++){
             var tilex = tiles[i].s.x + stage.x;
             var tiley = tiles[i].s.y + stage.y;
-            var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 400, 2));
-
-            if(distance < 600){
-                //if(tiles[i].type != 4){
-                    //stage.addChild(tiles[i].s);
-                   // tiles[i].Update();
-                //}
-            }
-        }
-        for(var i = 0; i < tiles.length; i++){
-            var tilex = tiles[i].s.x + stage.x;
-            var tiley = tiles[i].s.y + stage.y;
             var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 450, 2));
-            /*
-             if(distance < 600 && hero.currentType == 4){
-                if(tiles[i].type == 4){
-                    stage.addChild(tiles[i].s);
-                    tiles[i].Update();
-                }
-             }
-            */
 
             if(distance < 650){
             stage.addChild(tiles[i].s);
@@ -335,27 +297,6 @@ var canvas;
                 }
             }
         }
-        //var bmp = new createjs.Bitmap("assets/pine.png");
-        /*
-        bmp.image.onLoad = function () {
-                 var redFilter = new createjs.ColorFilter(1,0,0,1);
-                 bmp.filters = [redFilter];
-                 bmp.cache(0, 0, this.width, this.height);
-                 stage.addChild(bmp);
-        }
-        */
-        //bmp.x = 0;
-        //bmp.y = 0;
-        //console.log(bmp.width.x + " " + bmp.height);
-        // Cache it
-        console.log(stage.y);
-
         hero.Update();
-        // Apply a filter
-       // var redFilter = new createjs.ColorFilter(1,0,0,1);
-       // bmp.filters = [redFilter];
-       // bmp.cache(bmp.x,bmp.y,bmp.width,bmp.height);
-        // Add to stage
-       // stage.addChild(bmp);
         stage.update();
     }
