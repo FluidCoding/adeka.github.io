@@ -6,7 +6,7 @@ var canvas;
     var tiles = [];
     var hero;
     //var moving = false;
-    var speed = 2.2;
+   
    // var wolf;
 
     var KEYCODE_ENTER = 13;
@@ -32,6 +32,7 @@ var canvas;
         var  spawnOffset = -500;
 	    stage = new createjs.Stage(canvas);
         hero = new Hero();
+        hero.rootStage = stage;
 		hero.s.x = -spawnOffset + 400;
 		hero.s.y = -spawnOffset + 400;
 	   // stage.addChild(hero);
@@ -42,7 +43,7 @@ var canvas;
         var simplex = new SimplexNoise();
         var simplex2 = new SimplexNoise();
 
-        var mapSize = 20;
+        var mapSize = 50;
         var tileCount = mapSize*mapSize;
         var xPos = 0, yPos = 0;
 
@@ -158,10 +159,10 @@ var canvas;
 
                 break;
             case KEYCODE_SPACE: hero.Jump(); break;
-			case KEYCODE_A: hero.xVel = -speed; right = false; break;
-			case KEYCODE_D: hero.xVel = speed;  right = true; break;
-			case KEYCODE_W: hero.yVel = -speed; down = false; break;
-            case KEYCODE_S: hero.yVel = speed; down = true;  break;
+			case KEYCODE_A: hero.xVel = -hero.speed; right = false; break;
+			case KEYCODE_D: hero.xVel = hero.speed;  right = true; break;
+			case KEYCODE_W: hero.yVel = -hero.speed; down = false; break;
+            case KEYCODE_S: hero.yVel = hero.speed; down = true;  break;
 		}
 	}
 
@@ -234,18 +235,19 @@ var canvas;
             }
         }
          for(var i = 0; i < tiles.length; i++){
-                if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 > tiles[i].s.x - 0)) &&
-                   ((hero.s.y + 45 < tiles[i].s.y + 75 + tiles[i].yOffset ) &&
-                    (hero.s.y + 45 > tiles[i].s.y)))
+                if(((hero.s.x + 18 <= tiles[i].s.x + 50) &&
+                    (hero.s.x + 18 >= tiles[i].s.x - 0)) &&
+                   ((hero.s.y + 45 <= tiles[i].s.y + 75 + tiles[i].yOffset ) &&
+                    (hero.s.y + 45 >= tiles[i].s.y)))
                 {
                     hero.currentType = tiles[i].type;
+                    hero.currentTile = tiles[i];
                     hero.yOffset = tiles[i].yOffset;
                 }
          }
         for(var i = 0; i < tiles.length; i++){
            // if(tiles[i].type == 1 || tiles[i].decal || (tiles[i].type == 3 && !hero.jumping) || (tiles[i].type == 4 && !hero.jumping) && hero.currentType != 4){
-           if(tiles[i].type == 1 || (tiles[i].type == 3 && !hero.jumping) ||
+           if(tiles[i].type == 1 || (tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
                tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping){
                 if(((hero.s.x + hero.xVel < tiles[i].s.x + 40) &&
                     (hero.s.x + hero.xVel > tiles[i].s.x - 40)) &&
@@ -269,23 +271,34 @@ var canvas;
         {
             if(!colH){
                 hero.s.x += hero.xVel;
-                stage.x -= hero.xVel;
+                //stage.x -= hero.xVel;
             }
 
 
             if(!colV){
                 hero.s.y += hero.yVel;
-                stage.y -= hero.yVel;
+               // stage.y -= hero.yVel;
             }
         }
         else{
                 hero.s.x += hero.xVel;
-                stage.x -= hero.xVel;
+                //stage.x -= hero.xVel;
                 hero.s.y += hero.yVel;
-                stage.y -= hero.yVel;
+               // stage.y -= hero.yVel;
         }
 
-
+        if(-stage.x < hero.s.x - 400){
+           stage.x-= hero.speed;
+        }
+        if(-stage.y < hero.s.y - 400){
+           stage.y-= hero.speed;
+        }
+        if(-stage.x > hero.s.x - 400){
+           stage.x+= hero.speed;
+        }
+        if(-stage.y > hero.s.y - 400){
+           stage.y+= hero.speed;
+        }
         //var bmp = new createjs.Bitmap("assets/pine.png");
         /*
         bmp.image.onLoad = function () {
@@ -299,7 +312,7 @@ var canvas;
         //bmp.y = 0;
         //console.log(bmp.width.x + " " + bmp.height);
         // Cache it
-        console.log(hero.currentType);
+        console.log(stage.y);
 
         hero.Update();
         // Apply a filter

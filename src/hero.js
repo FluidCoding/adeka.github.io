@@ -7,8 +7,14 @@ function Hero() {
         this.jumpCounter = 0;
         this.dir = "right";
         this.currentType = 0;
+        this.currentTile;
+        this.lastTile;
         this.yOffset = 0;
         this.incY = 0;
+        this.curOpacity = 1.0;
+        this.drowning = false;
+        this.speed = 2.2;
+        this.rootStage;
         //this.colH = false;
         //this.colV = false;
         //32x24
@@ -44,63 +50,96 @@ function Hero() {
            // console.log(this.s.regX);
         }
         this.Update = function Update(){
-            if(this.yVel > 0){
-                if(hero.dir != "down"){
-                hero.Face("down");
-                }
+            if(this.currentType == 3 && !this.jumping && !this.falling){
+                this.drowning = true;
             }
-            else if(this.yVel < 0){
-                if(hero.dir != "up"){
-                hero.Face("up");
-                }
+            if(!this.drowning && !this.jumping && !this.falling){
+                this.lastTile = this.currentTile;
             }
-            else if(this.xVel > 0){
-                if(hero.dir != "right"){
-                hero.Face("right");
-                }
+            if(this.curOpacity <= .1){
+               // this.rootStage.x += Math.abs(this.s.x - this.lastTile.s.x);
+               // this.rootStage.y -= Math.abs(this.s.y - this.lastTile.s.y);
+                this.drowning = false;
+                this.jumping = false;
+                this.falling = false;
+                this.s.y = this.lastTile.s.y;
+                this.s.x = this.lastTile.s.x;
+                this.currentType = this.lastTile.type;
+                this.s.set({alpha: 1});
+                this.curOpacity = 1.0;
+                this.shadow.set({alpha: 1});
+                this.speed = 2.2;
             }
-            else if(this.xVel < 0){
-                if(hero.dir != "left"){
-                hero.Face("left");
-                }
+            if(this.drowning){
+                this.curOpacity -= .05;
+                this.s.y +=1;
+                this.s.set({alpha: this.curOpacity});
+                this.shadow.set({alpha: 0});
+                this.speed = 0;
+                this.xVel = 0;
+                this.yVel = 0;
             }
             else{
-                hero.Face("stop");
-            }
-            if(this.incY < this.yOffset){
-                this.incY+=3;
-                this.falling = true;
-            }
-            if(this.incY > this.yOffset){
-                this.incY-=1.5;
-            }
-            if(this.incY == this.yOffset){
-                this.falling = false;
-            }
-            this.s.set({regY : Math.sin(this.jumpCounter/10)*35});
-            //this.anims.gotoAndPlay(this.dir);
-            this.shadow.x = this.s.x;
-            this.shadow.y = this.s.y;
-            //if(this.s)
-            if(this.jumpCounter >= 15){
-                this.falling = true;
-            }
-            if(this.jumpCounter >= 31){
-                    this.jumping = false;
-                    this.jumpCounter = 0;
+                if(this.yVel > 0){
+                    if(hero.dir != "down"){
+                    hero.Face("down");
+                    }
+                }
+                else if(this.yVel < 0){
+                    if(hero.dir != "up"){
+                    hero.Face("up");
+                    }
+                }
+                else if(this.xVel > 0){
+                    if(hero.dir != "right"){
+                    hero.Face("right");
+                    }
+                }
+                else if(this.xVel < 0){
+                    if(hero.dir != "left"){
+                    hero.Face("left");
+                    }
+                }
+                else{
+                    hero.Face("stop");
+                }
+                if(this.incY < this.yOffset){
+                    this.incY+=3;
+                    this.falling = true;
+                }
+                if(this.incY > this.yOffset){
+                    this.incY-=1.5;
+                }
+                if(this.incY == this.yOffset){
                     this.falling = false;
-            }
-            if(this.jumping){
+                }
+                this.s.set({regY : Math.sin(this.jumpCounter/10)*35});
+                //this.anims.gotoAndPlay(this.dir);
+                this.shadow.x = this.s.x;
+                this.shadow.y = this.s.y;
+                //if(this.s)
+                if(this.jumpCounter >= 15){
+                    this.falling = true;
+                }
+                if(this.jumpCounter >= 31){
+                        this.jumping = false;
+                        this.jumpCounter = 0;
+                        this.falling = false;
+                }
+                if(this.jumping){
 
-                    this.jumpCounter++;
-                   // this.s.y++;
-                    this.newY = Math.sin(this.jumpCounter/10)*35;
-                   // this.s.set({regY : this.newY});
+                        this.jumpCounter++;
+                       // this.s.y++;
+                        this.newY = Math.sin(this.jumpCounter/10)*35;
+                       // this.s.set({regY : this.newY});
 
+                }
             }
             this.s.set({regY : this.newY + this.incY});
             this.shadow.set({regY : this.yOffset});
+
         }
+
         this.Drown = function Drown(){
            // this.s.set({alpha: this.s.alpha -.1});
         }

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29879ed-c439-471a-bcb6-73a6a39a3a0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/decal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hero.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Thumbs.db" afterPath="$PROJECT_DIR$/assets/Thumbs.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/spritesheet.png" afterPath="$PROJECT_DIR$/assets/spritesheet.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/spritesheet.psd" afterPath="$PROJECT_DIR$/assets/spritesheet.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hero.js" afterPath="$PROJECT_DIR$/src/hero.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="adeka.github.io.iws" />
@@ -36,7 +31,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="75" selection-start="1215" selection-end="1215" vertical-scroll-proportion="-4.730769" vertical-offset="217" max-vertical-offset="1088">
+            <state line="38" column="0" selection-start="2589" selection-end="2589" vertical-scroll-proportion="-16.5" vertical-offset="217" max-vertical-offset="1088">
               <folding />
             </state>
           </provider>
@@ -45,7 +40,7 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="247" column="35" selection-start="7455" selection-end="7455" vertical-scroll-proportion="0.3277592" vertical-offset="3871" max-vertical-offset="5355">
+            <state line="248" column="68" selection-start="7413" selection-end="7413" vertical-scroll-proportion="0.51059085" vertical-offset="3724" max-vertical-offset="5576">
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -56,7 +51,7 @@
       <file leaf-file-name="tile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="33" selection-start="1045" selection-end="1045" vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="1037">
+            <state line="25" column="18" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
               <folding>
                 <element signature="n#!!doc;n#Tile#0" expanded="false" />
               </folding>
@@ -67,7 +62,7 @@
       <file leaf-file-name="decal.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/decal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="46" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="884">
+            <state line="14" column="46" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
@@ -76,10 +71,8 @@
       <file leaf-file-name="hero.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hero.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="31" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="2108">
-              <folding>
-                <element signature="e#3380#3422#0" expanded="false" />
-              </folding>
+            <state line="72" column="30" selection-start="2220" selection-end="2220" vertical-scroll-proportion="0.0" vertical-offset="607" max-vertical-offset="2805">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -347,14 +340,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11302083" sideWeight="0.6706392" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11302083" sideWeight="0.6706392" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -379,7 +372,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -411,34 +404,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="75" selection-start="1215" selection-end="1215" vertical-scroll-proportion="-4.730769" vertical-offset="217" max-vertical-offset="1088">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="33" selection-start="1045" selection-end="1045" vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="1037">
+        <state line="25" column="18" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="1037">
           <folding>
             <element signature="n#!!doc;n#Tile#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="2589" selection-end="2589" vertical-scroll-proportion="-16.5" vertical-offset="217" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/hero.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="31" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="2108">
-          <folding>
-            <element signature="e#3380#3422#0" expanded="false" />
-          </folding>
+        <state line="72" column="30" selection-start="2220" selection-end="2220" vertical-scroll-proportion="0.0" vertical-offset="607" max-vertical-offset="2805">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="247" column="35" selection-start="7455" selection-end="7455" vertical-scroll-proportion="0.3277592" vertical-offset="3871" max-vertical-offset="5355">
+        <state line="248" column="68" selection-start="7413" selection-end="7413" vertical-scroll-proportion="0.51059085" vertical-offset="3724" max-vertical-offset="5576">
           <folding>
             <element signature="e#0#42#0" expanded="false" />
           </folding>
