@@ -97,11 +97,11 @@ var canvas;
                 //}
                 if(noise > 4){
                 var decal = new Decal(1);
-               // tile.AddDecal(decal);
+                tile.AddDecal(decal);
                 }
                 else if(noise > 3){
                 var decal = new Decal(3);
-               // tile.AddDecal(decal);
+                tile.AddDecal(decal);
                 }
             }
            // stage.update();
@@ -130,8 +130,8 @@ var canvas;
 
 					"frames":
 						{
-							"height": 37,
-							"width":35,
+							"height": 35,
+							"width":34,
 							"regX": 0,
 							"regY": 0,
 							"count": 12

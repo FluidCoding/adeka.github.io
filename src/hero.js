@@ -26,6 +26,27 @@ function Hero() {
         //32x24
         //this.s = new createjs.Bitmap("assets/hero.png");
 
+    this.anims = new createjs.SpriteSheet({
+				"animations":
+				{
+					"down": [0, 2, "down", .1],
+					"left": [3, 5, "left",.1],
+                    "right": [6, 8, "right",.1],
+                    "up": [9, 11, "up",.1]},
+
+					"images": ["assets/wolf.png"],
+
+					"frames":
+						{
+							"height": 35,
+							"width":36,
+							"regX": 0,
+							"regY": -7,
+							"count": 12
+
+						}
+		});
+    /*
         this.anims = new createjs.SpriteSheet({
 				"animations":
 				{
@@ -46,7 +67,7 @@ function Hero() {
 
 						}
 		});
-
+*/
         this.newY = 0;
 
         this.s = new createjs.Sprite(this.anims, this.dir);
