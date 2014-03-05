@@ -182,15 +182,24 @@ var canvas;
         stage.removeAllChildren();
         hero.isDrawn = false;
 
-
+        var leftX = 0;
+        var rightX = 0;
+        if(hero.sideDir == "left" && hero.currentTile != 4){
+            leftX = -10;
+        }
+        if(hero.sideDir == "right" && hero.currentTile != 4){
+            rightX = 6;
+        }
 
 
         //detect the tile directly underneath the hero
          for(var i = 0; i < tiles.length; i++){
-                if(((hero.s.x + 18 <= tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 >= tiles[i].s.x - 0)) &&
-                   ((hero.s.y + 45 <= tiles[i].s.y + 70 + tiles[i].yOffset) &&
-                    (hero.s.y + 45 >= tiles[i].s.y + 0)))
+                if(
+                   ((hero.s.x + 18 < tiles[i].s.x + 50) &&
+                    (hero.s.x + 18 + 0 > tiles[i].s.x - 0)) &&
+                   ((hero.s.y + 45 < tiles[i].s.y + 70 + tiles[i].colYOffset) &&
+                    (hero.s.y + 45 > tiles[i].s.y + 0))
+                  )
                 {
                     hero.currentType = tiles[i].type;
                     hero.currentTile = tiles[i];
@@ -230,16 +239,16 @@ var canvas;
            if((tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
                (tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
                (tiles[i].decal && hero.jumping)){
-                if(((hero.s.x + 10 + hero.xVel < tiles[i].s.x + 50) &&
-                    (hero.s.x + 24 + hero.xVel > tiles[i].s.x - 0)) &&
-                   ((hero.s.y <= tiles[i].s.y + tiles[i].colYOffset ) &&
+                if(((hero.s.x + 18 + hero.xVel < tiles[i].s.x + 50) &&
+                    (hero.s.x + 18 + hero.xVel > tiles[i].s.x - 0)) &&
+                   ((hero.s.y < tiles[i].s.y + tiles[i].colYOffset ) &&
                     (hero.s.y > tiles[i].s.y - 50 )))
                 {
                     hero.colH = true;
                 }
-                if(((hero.s.x + 10 < tiles[i].s.x + 50) &&
-                    (hero.s.x + 24 > tiles[i].s.x - 0)) &&
-                   ((hero.s.y + hero.yVel <= tiles[i].s.y + tiles[i].colYOffset ) &&
+                if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
+                    (hero.s.x + 18 > tiles[i].s.x - 0)) &&
+                   ((hero.s.y + hero.yVel < tiles[i].s.y + tiles[i].colYOffset ) &&
                     (hero.s.y + hero.yVel > tiles[i].s.y - 50 )))
                 {
                    hero.colV = true;

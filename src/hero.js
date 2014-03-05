@@ -13,7 +13,7 @@ function Hero() {
         this.incY = 0;
         this.curOpacity = 1.0;
         this.drowning = false;
-
+        this.sideDir = "right";
         this.originalSpeed = 1.6;
         this.speed = this.originalSpeed;
         this.rootStage;
@@ -84,27 +84,30 @@ function Hero() {
             }
             else{
                 if(this.yVel > 0){
-                    if(hero.dir != "down"){
-                        hero.Face("down");
+                    if(this.dir != "down"){
+                        this.Face("down");
                     }
                 }
                 else if(this.yVel < 0){
-                    if(hero.dir != "up"){
-                        hero.Face("up");
+                    if(this.dir != "up"){
+                        this.Face("up");
                     }
                 }
                 else if(this.xVel > 0){
-                    if(hero.dir != "right"){
-                        hero.Face("right");
+                    if(this.dir != "right"){
+                        this.Face("right");
                     }
+                    this.sideDir = "right";
                 }
                 else if(this.xVel < 0){
-                    if(hero.dir != "left"){
-                        hero.Face("left");
+                    if(this.dir != "left"){
+                        this.Face("left");
+
                     }
+                    this.sideDir = "left";
                 }
                 else{
-                    hero.Face("stop");
+                    this.Face("stop");
                 }
                 if(this.incY < this.yOffset){
                     this.incY+=3;
