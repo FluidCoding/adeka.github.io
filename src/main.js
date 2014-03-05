@@ -76,6 +76,7 @@ var canvas;
                 type = 0;
                 yOffset = landNoise;
             }
+            
             var tile = new Tile(type);
 
             tile.s.x = xPos * 50 + 400 + tile.xOffset;
