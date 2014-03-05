@@ -20,6 +20,9 @@ function Hero() {
         this.nextTile;
         this.colH = false;
         this.colV = false;
+        this.wanderTimer = 110;
+        this.wanderX = 0;
+        this.wanderY = 0;
         //32x24
         //this.s = new createjs.Bitmap("assets/hero.png");
 
@@ -83,32 +86,61 @@ function Hero() {
                 this.yVel = 0;
             }
             else{
-                if(this.yVel > 0){
-                    if(this.dir != "down"){
-                        this.Face("down");
+                if(this.wanderTimer <= 100){
+                    this.wanderTimer++;
+                }
+                if(this.wanderTimer >= 100){
+                    console.log("reset");
+                    this.wanderTimer = 0;
+                    var sleepChance = Math.random();
+                    if(sleepChance > .75){
+                        this.wanderX = this.s.x;
+                        this.wanderY = this.s.y;
+                    }
+                    else{
+                        this.wanderX = this.s.x + ( 1.0 - Math.random()*2.0)*500;
+                        this.wanderY = this.s.y + ( 1.0 - Math.random()*2.0)*500;
                     }
                 }
-                else if(this.yVel < 0){
-                    if(this.dir != "up"){
-                        this.Face("up");
-                    }
-                }
-                else if(this.xVel > 0){
-                    if(this.dir != "right"){
-                        this.Face("right");
-                    }
-                    this.sideDir = "right";
-                }
-                else if(this.xVel < 0){
-                    if(this.dir != "left"){
-                        this.Face("left");
 
+                var wanderVecX = this.wanderX - this.s.x;
+                var wanderVecY = this.wanderY - this.s.y;
+
+                this.xVel = wanderVecX/500;
+                this.yVel = wanderVecY/500;
+
+                if(Math.abs(this.yVel) > Math.abs(this.xVel)){
+                    if(this.yVel > 0){
+                        if(this.dir != "down"){
+                            this.Face("down");
+                        }
                     }
-                    this.sideDir = "left";
+                    else if(this.yVel < 0){
+                        if(this.dir != "up"){
+                            this.Face("up");
+                        }
+                    }
                 }
-                else{
+                if(Math.abs(this.xVel) > Math.abs(this.yVel)){
+                    if(this.xVel > 0){
+                        if(this.dir != "right"){
+                            this.Face("right");
+                        }
+                        this.sideDir = "right";
+                    }
+                    else if(this.xVel < 0){
+                        if(this.dir != "left"){
+                            this.Face("left");
+
+                        }
+                        this.sideDir = "left";
+                    }
+                }
+                //stop
+                if(this.xVel == 0 && this.yVel == 0){
                     this.Face("stop");
                 }
+
                 if(this.incY < this.yOffset){
                     this.incY+=3;
                     this.falling = true;
