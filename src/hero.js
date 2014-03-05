@@ -37,7 +37,7 @@ function Hero() {
 						{
 							"height": 48,
 							"width":36,
-							"regX": -5,
+							"regX": 0,
 							"regY": 0,
 							"count": 12
 
@@ -118,7 +118,7 @@ function Hero() {
                 }
                 this.s.set({regY : Math.sin(this.jumpCounter/10)*35});
                 //this.anims.gotoAndPlay(this.dir);
-                this.shadow.x = this.s.x;
+                this.shadow.x = this.s.x - 5;
                 this.shadow.y = this.s.y;
                 //if(this.s)
                 if(this.jumpCounter >= 15){

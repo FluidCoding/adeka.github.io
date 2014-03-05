@@ -4,6 +4,7 @@
    function Tile(type) {
         this.xOffset = 0;
         this.yOffset = 0;
+         this.colYOffset = 0;
         this.type = type;
         var s;
          this.rando = Math.random() * 2;
@@ -26,9 +27,11 @@
                 s = new createjs.Bitmap("assets/tall.png");
                 s.set({regY : 25});
                 this.yOffset = 25;
+                this.colYOffset = 15;
                 break;
         }
         this.s = s;
+        //this.s.set({regX : 0});
         this.AddDecal = AddDecal;
         function AddDecal(decal){
             this.decal = decal;

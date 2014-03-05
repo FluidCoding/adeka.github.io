@@ -96,11 +96,11 @@ var canvas;
                 //}
                 if(noise > 4){
                 var decal = new Decal(1);
-                tile.AddDecal(decal);
+               // tile.AddDecal(decal);
                 }
                 else if(noise > 3){
                 var decal = new Decal(3);
-                tile.AddDecal(decal);
+               // tile.AddDecal(decal);
                 }
             }
            // stage.update();
@@ -182,15 +182,22 @@ var canvas;
         stage.removeAllChildren();
         hero.isDrawn = false;
 
-        //define collision offset based on current direction
-        var xOffset = 0;
-        if(hero.dir == "right" && hero.currentType != 4){
-            xOffset = 10;
-        }
-        else if(hero.dir == "left" && hero.currentType == 4){
-            xOffset = 25;
-        }
 
+
+
+        //detect the tile directly underneath the hero
+         for(var i = 0; i < tiles.length; i++){
+                if(((hero.s.x + 18 <= tiles[i].s.x + 50) &&
+                    (hero.s.x + 18 >= tiles[i].s.x - 0)) &&
+                   ((hero.s.y + 45 <= tiles[i].s.y + 70 + tiles[i].yOffset) &&
+                    (hero.s.y + 45 >= tiles[i].s.y + 0)))
+                {
+                    hero.currentType = tiles[i].type;
+                    hero.currentTile = tiles[i];
+                    hero.nextTile = tiles[i + 1]
+                    hero.yOffset = tiles[i].yOffset;
+                }
+         }
         //decal collisions
         for(var i = 0; i < tiles.length; i++){
              if( tiles[i].decal ){
@@ -216,19 +223,6 @@ var canvas;
             }
         }
 
-        //detect the tile directly underneath the hero
-         for(var i = 0; i < tiles.length; i++){
-                if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 > tiles[i].s.x - xOffset)) &&
-                   ((hero.s.y + 45 < tiles[i].s.y + 75 + tiles[i].yOffset ) &&
-                    (hero.s.y + 45 > tiles[i].s.y )))
-                {
-                    hero.currentType = tiles[i].type;
-                    hero.currentTile = tiles[i];
-                    hero.nextTile = tiles[i + 1]
-                    hero.yOffset = tiles[i].yOffset;
-                }
-         }
 
         //tile collision
         for(var i = 0; i < tiles.length; i++){
@@ -236,16 +230,16 @@ var canvas;
            if((tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
                (tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
                (tiles[i].decal && hero.jumping)){
-                if(((hero.s.x + hero.xVel < tiles[i].s.x + 32) &&
-                    (hero.s.x + hero.xVel > tiles[i].s.x - 32)) &&
-                   ((hero.s.y < tiles[i].s.y + 15 ) &&
+                if(((hero.s.x + 10 + hero.xVel < tiles[i].s.x + 50) &&
+                    (hero.s.x + 24 + hero.xVel > tiles[i].s.x - 0)) &&
+                   ((hero.s.y <= tiles[i].s.y + tiles[i].colYOffset ) &&
                     (hero.s.y > tiles[i].s.y - 50 )))
                 {
                     hero.colH = true;
                 }
-                if(((hero.s.x < tiles[i].s.x + 32) &&
-                    (hero.s.x > tiles[i].s.x - 32)) &&
-                   ((hero.s.y + hero.yVel  < tiles[i].s.y + 15 ) &&
+                if(((hero.s.x + 10 < tiles[i].s.x + 50) &&
+                    (hero.s.x + 24 > tiles[i].s.x - 0)) &&
+                   ((hero.s.y + hero.yVel <= tiles[i].s.y + tiles[i].colYOffset ) &&
                     (hero.s.y + hero.yVel > tiles[i].s.y - 50 )))
                 {
                    hero.colV = true;
