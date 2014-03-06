@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29879ed-c439-471a-bcb6-73a6a39a3a0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chunk.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/Thumbs.db" afterPath="$PROJECT_DIR$/assets/Thumbs.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hero.js" afterPath="$PROJECT_DIR$/src/hero.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/adeka.github.io.iml" afterPath="$PROJECT_DIR$/.idea/adeka.github.io.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -33,7 +30,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="79" selection-start="275" selection-end="275" vertical-scroll-proportion="-3.3333333" vertical-offset="0" max-vertical-offset="1173">
+            <state line="12" column="79" selection-start="439" selection-end="439" vertical-scroll-proportion="-7.68" vertical-offset="0" max-vertical-offset="1104">
               <folding />
             </state>
           </provider>
@@ -42,7 +39,7 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="16" selection-start="2476" selection-end="2476" vertical-scroll-proportion="0.43143812" vertical-offset="1143" max-vertical-offset="3434">
+            <state line="85" column="50" selection-start="2258" selection-end="2258" vertical-scroll-proportion="-0.80604136" vertical-offset="1867" max-vertical-offset="3408">
               <folding />
             </state>
           </provider>
@@ -51,10 +48,8 @@
       <file leaf-file-name="chunk.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chunk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="166" column="57" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.0" vertical-offset="2367" max-vertical-offset="3264">
-              <folding>
-                <element signature="n#!!doc;n#Chunk#0" expanded="false" />
-              </folding>
+            <state line="166" column="57" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.0" vertical-offset="2656" max-vertical-offset="3104">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,7 +57,7 @@
       <file leaf-file-name="tile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="27" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
+            <state line="35" column="27" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="944">
               <folding />
             </state>
           </provider>
@@ -71,16 +66,7 @@
       <file leaf-file-name="decal.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/decal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unit.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/unit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="18" selection-start="318" selection-end="318" vertical-scroll-proportion="-8.84" vertical-offset="0" max-vertical-offset="4216">
+            <state line="17" column="18" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="800">
               <folding />
             </state>
           </provider>
@@ -89,16 +75,7 @@
       <file leaf-file-name="hero.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hero.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="55" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="npc.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/npc.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="0" selection-start="2685" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="905" max-vertical-offset="2550">
+            <state line="8" column="43" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="592">
               <folding />
             </state>
           </provider>
@@ -130,17 +107,17 @@
         <option value="$PROJECT_DIR$/src/npc.js" />
         <option value="$PROJECT_DIR$/src/unit.js" />
         <option value="$PROJECT_DIR$/src/hero.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/chunk.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/main.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1592" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -168,7 +145,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -177,32 +153,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adeka.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adeka.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adeka.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adeka.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -305,9 +258,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -329,6 +279,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -404,16 +357,36 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1592" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1359375" sideWeight="0.6706392" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16163142" sideWeight="0.6706392" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32931727" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -445,9 +418,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.114249036" sideWeight="0.6706392" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -471,6 +444,48 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="79" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1024">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="16" selection-start="2432" selection-end="2432" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="4864">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chunk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="166" column="57" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.0" vertical-offset="2656" max-vertical-offset="3104">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="27" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="944">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/decal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="18" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="832">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hero.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="55" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0" vertical-offset="416" max-vertical-offset="3952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="236" column="9" selection-start="6823" selection-end="6823" vertical-scroll-proportion="0.0" vertical-offset="4012" max-vertical-offset="5746">
@@ -488,13 +503,6 @@
     <entry file="file://$PROJECT_DIR$/src/decal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="46" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/unit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="38" selection-start="1599" selection-end="1599" vertical-scroll-proportion="0.0" vertical-offset="607" max-vertical-offset="2805">
           <folding />
         </state>
       </provider>
@@ -532,13 +540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="79" selection-start="275" selection-end="275" vertical-scroll-proportion="-3.3333333" vertical-offset="0" max-vertical-offset="1173">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="27" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0" vertical-offset="106" max-vertical-offset="1003">
@@ -546,23 +547,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/unit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="18" selection-start="318" selection-end="318" vertical-scroll-proportion="-8.84" vertical-offset="0" max-vertical-offset="4216">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hero.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="55" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/npc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2685" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="905" max-vertical-offset="2550">
+        <state line="8" column="43" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="592">
           <folding />
         </state>
       </provider>
@@ -570,15 +557,20 @@
     <entry file="file://$PROJECT_DIR$/src/chunk.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="166" column="57" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.0" vertical-offset="2367" max-vertical-offset="3264">
-          <folding>
-            <element signature="n#!!doc;n#Chunk#0" expanded="false" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="79" selection-start="439" selection-end="439" vertical-scroll-proportion="-7.68" vertical-offset="0" max-vertical-offset="1104">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="16" selection-start="2476" selection-end="2476" vertical-scroll-proportion="0.43143812" vertical-offset="1143" max-vertical-offset="3434">
+        <state line="85" column="50" selection-start="2258" selection-end="2258" vertical-scroll-proportion="-0.80604136" vertical-offset="1867" max-vertical-offset="3408">
           <folding />
         </state>
       </provider>

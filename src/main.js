@@ -82,12 +82,23 @@ function tick(event) {
                  //console.log("pushing");
                }
                if(allUnits[j] instanceof Hero){
+
+                    //draw top and adjacent chunks
+                    if(i - this.mapSize >= 0) chunks[i - mapSize].Update();
+                    if(i - this.mapSize + 1 >= 0) chunks[i - mapSize + 1].Update();
+                    if(i - this.mapSize - 1 >= 0) chunks[i - mapSize - 1].Update();
+
+                   //draw current and adjacent chunks
+                    if(i - 1 >= 0) chunks[i-1].Update();
                     chunks[i].Update();
-                    if(i > 0) chunks[i-1].Update();
-                    if(i < chunks.length - 1){
-                    chunks[i+1].Update();
-                    chunks[i + mapSize].Update();
-                    }
+                    if(i + 1 < chunks.length - 1) chunks[i+1].Update();
+
+                   //draw bottom and adjacent chunks
+                    if(i + this.mapSize - 1 < chunks.length - 1) chunks[i + mapSize - 1].Update();
+                    if(i + this.mapSize < chunks.length - 1) chunks[i + mapSize].Update();
+                    if(i + this.mapSize + 1 < chunks.length - 1) chunks[i + mapSize + 1].Update();
+
+
                }
             }
             else{
