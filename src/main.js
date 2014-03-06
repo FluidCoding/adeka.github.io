@@ -20,7 +20,7 @@ var canvas;
 	var KEYCODE_A = 65;
 	var KEYCODE_D = 68;
     var KEYCODE_F = 70;
-    var mapSize = 50;
+    var mapSize = 20;
     var right = false, down = false;
     var counter = 0;
     var chunk;
@@ -33,12 +33,17 @@ var canvas;
 	    height = canvas.height;
         var  spawnOffset = -500;
 	    stage = new createjs.Stage(canvas);
-        hero = new Unit();
-        hero.rootStage = stage;
+        hero = new Hero();
+        //hero.rootStage = stage;
 		hero.s.x = -spawnOffset + 400;
 		hero.s.y = -spawnOffset + 400;
 	   // stage.addChild(hero);
         units.push(hero);
+        var b = new NPC("bunny");
+		b.s.x = -spawnOffset + 400;
+		b.s.y = -spawnOffset + 400;
+        //units.push(b);
+
         stage.x = spawnOffset;
         stage.y = spawnOffset;
         chunk = new Chunk();
@@ -97,6 +102,9 @@ var canvas;
         var xPos = 0, yPos = 0;
 
         for(var i=0;i< tileCount;i++){
+            var bunnyChance = Math.random()*1000;
+            var wolfChance = Math.random()*1000;
+            var deerChance = Math.random()*1000;
             if(i % mapSize == 0){
                 xPos = 0;
                 yPos += 1;
@@ -152,8 +160,32 @@ var canvas;
                 var decal = new Decal(3);
                 tile.AddDecal(decal);
                 }
+
+            if(!tile.decal){
+               if(bunnyChance > 988){
+                    var bunny = new NPC("bunny");
+                    bunny.s.x = tile.s.x;
+                    bunny.s.y = tile.s.y;
+                    units.push(bunny);
+                }
+                else if(deerChance > 988){
+                    var deer = new NPC("deer");
+                    deer.s.x = tile.s.x;
+                    deer.s.y = tile.s.y;
+                    units.push(deer);
+                }
+                else if(wolfChance > 988){
+                    var deer = new NPC("wolf");
+                    deer.s.x = tile.s.x;
+                    deer.s.y = tile.s.y;
+                    units.push(deer);
+                }
+            }
+
+
             }
            // stage.update();
+
             tiles.push(tile);
         }
         //start game timer
@@ -171,13 +203,17 @@ var canvas;
         this.CheckUnitDecalCollision();
         this.CheckUnitTileCollision();
         this.CenterScreen();
-        this.Draw();
         this.UpdateUnits();
+             this.Draw();
+
         stage.update();
     }
 Chunk.prototype.UpdateUnits = function(){
     for(var i = 0; i < units.length; i++){
         units[i].Update();
+        if(units[i] instanceof NPC){
+            units[i].Wander();
+        }
     }
 }
 Chunk.prototype.Draw = function(){

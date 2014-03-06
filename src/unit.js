@@ -16,104 +16,11 @@ function Unit() {
         this.sideDir = "right";
         this.originalSpeed = 1.6;
         this.speed = this.originalSpeed;
-        this.rootStage;
         this.nextTile;
         this.colH = false;
         this.colV = false;
-        this.wanderTimer = 110;
-        this.wanderX = 0;
-        this.wanderY = 0;
-        //32x24
-        //this.s = new createjs.Bitmap("assets/hero.png");
 
-    this.anims = new createjs.SpriteSheet({
-				"animations":
-				{
-					"down": [0, 2, "down", .1],
-					"left": [3, 5, "left",.1],
-                    "right": [6, 8, "right",.1],
-                    "up": [9, 11, "up",.1]},
-
-					"images": ["assets/bunny.png"],
-
-					"frames":
-						{
-							"height": 31,
-							"width": 31,
-							"regX": 0,
-							"regY": -12,
-							"count": 12
-
-						}
-		});
-        /*
-    this.anims = new createjs.SpriteSheet({
-				"animations":
-				{
-					"down": [0, 2, "down", .1],
-					"left": [3, 5, "left",.1],
-                    "right": [6, 8, "right",.1],
-                    "up": [9, 11, "up",.1]},
-
-					"images": ["assets/deer.png"],
-
-					"frames":
-						{
-							"height": 32,
-							"width": 32,
-							"regX": -4,
-							"regY": -9,
-							"count": 12
-
-						}
-		});
-
-
-    this.anims = new createjs.SpriteSheet({
-				"animations":
-				{
-					"down": [0, 2, "down", .1],
-					"left": [3, 5, "left",.1],
-                    "right": [6, 8, "right",.1],
-                    "up": [9, 11, "up",.1]},
-
-					"images": ["assets/wolf.png"],
-
-					"frames":
-						{
-							"height": 35,
-							"width":36,
-							"regX": 0,
-							"regY": -7,
-							"count": 12
-
-						}
-		});
-		*/
-    /*
-        this.anims = new createjs.SpriteSheet({
-				"animations":
-				{
-					"down": [0, 2, "down", .1],
-					"up": [3, 5, "up",.1],
-                    "right": [6, 8, "right",.1],
-                    "left": [9, 11, "left",.1]},
-
-					"images": ["assets/spritesheet.png"],
-
-					"frames":
-						{
-							"height": 48,
-							"width":36,
-							"regX": 0,
-							"regY": 0,
-							"count": 12
-
-						}
-		});
-*/
         this.newY = 0;
-        this.s = new createjs.Sprite(this.anims, this.dir);
         this.shadow = new createjs.Bitmap("assets/shadow.png");
 }
         Unit.prototype.Update = function(){
@@ -262,16 +169,16 @@ function Unit() {
         }
         Unit.prototype.CheckTilePair = function(tile, nextTile){
             if(
-                   ((hero.s.x + 18 < tile.s.x + 50) &&
-                    (hero.s.x + 18 + 0 > tile.s.x - 0)) &&
-                   ((hero.s.y + 45 < tile.s.y + 70 + tile.colYOffset) &&
-                    (hero.s.y + 45 > tile.s.y + 0))
+                   ((this.s.x + 18 < tile.s.x + 50) &&
+                    (this.s.x + 18 + 0 > tile.s.x - 0)) &&
+                   ((this.s.y + 45 < tile.s.y + 70 + tile.colYOffset) &&
+                    (this.s.y + 45 > tile.s.y + 0))
                   )
                 {
-                    hero.currentType = tile.type;
-                    hero.currentTile = tile;
-                    hero.nextTile = nextTile;
-                    hero.yOffset = tile.yOffset;
+                    this.currentType = tile.type;
+                    this.currentTile = tile;
+                    this.nextTile = nextTile;
+                    this.yOffset = tile.yOffset;
             }
         }
         Unit.prototype.CheckTileCollision = function(tile){
@@ -324,40 +231,7 @@ function Unit() {
                   }
                 }
         }
-        Unit.prototype.Wander = function(){
-                var sleepChance;
-                if(this.wanderTimer <= 100){
-                    this.wanderTimer++;
-                }
-                if(this.colH || this.colV){
-                    this.wanderTimer += 25;
-                }
-                if(this.wanderTimer >= 100){
-                    console.log("reset");
-                    this.wanderTimer = 0;
-                    sleepChance = Math.random();
-                    if(sleepChance > .75){
-                        this.wanderX = this.s.x;
-                        this.wanderY = this.s.y;
-                    }
-                    else{
-                        this.wanderX = this.s.x + ( 1.0 - Math.random()*2.0)*300;
-                        this.wanderY = this.s.y + ( 1.0 - Math.random()*2.0)*300;
-                    }
-                }
 
-
-                if(sleepChance > .75){
-                    this.xVel = 0;
-                    this.yVel = 0;
-                }
-                else{
-                    var wanderVecX = this.wanderX - this.s.x;
-                    var wanderVecY = this.wanderY - this.s.y;
-                    this.xVel = wanderVecX/300/this.speed;
-                    this.yVel = wanderVecY/300/this.speed;
-                }
-        }
 
 	/**
  * Created by gramp_000 on 3/2/14.
