@@ -32,7 +32,7 @@ function init() {
     height = canvas.height;
     var spawnOffset = -500;
     stage = new createjs.Stage(canvas);
-    hero = new Hero();
+    hero = new NPC("bunny");
     //hero.rootStage = stage;
     hero.s.x = -spawnOffset + 400;
     hero.s.y = -spawnOffset + 400;
@@ -59,6 +59,9 @@ function init() {
         }
         var chunk = new Chunk(stage, simplex, simplex2, xOrigin, yOrigin);
         chunks.push(chunk);
+        if(i>0){
+            chunks[i-1].nextChunk = chunk;
+        }
     }
 
         //start game timer
@@ -81,7 +84,7 @@ function tick(event) {
                  chunks[i].units.push(allUnits[j]);
                  //console.log("pushing");
                }
-               if(allUnits[j] instanceof Hero){
+               if(allUnits[j] instanceof NPC){
 
                     //draw top and adjacent chunks
                     if(i - this.mapSize >= 0) chunks[i - mapSize].Update();

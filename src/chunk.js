@@ -4,6 +4,8 @@
 function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
     this.stage = stage;
 
+    this.nextChunk;
+
     this.xOrigin = xOrigin;
     this.yOrigin = yOrigin;
     this.chunkSize = 20;
@@ -156,7 +158,16 @@ Chunk.prototype.SetUnitTiles = function () {
     //detect the tile directly underneath the hero
     for (var i = 0; i < this.tiles.length; i++) {
         for (var j = 0; j < this.units.length; j++) {
-            this.units[j].CheckTilePair(this.tiles[i], this.tiles[i + 1]);
+            var nextTile;
+            if(i % this.chunkSize == 0){
+                //nextTile = this.tiles[i - 1];
+
+                nextTile = this.nextChunk.tiles[i - this.chunkSize + 1];
+            }
+            else{
+                nextTile = this.tiles[i + 1];
+            }
+            this.units[j].CheckTilePair(this.tiles[i], nextTile);
         }
     }
 }
@@ -180,9 +191,9 @@ Chunk.prototype.CheckUnitTileCollision = function () {
 }
 Chunk.prototype.ContainsUnit = function(unit){
     var b =
-    (unit.s.x + 18 > this.xOrigin*50) &&
-    (unit.s.x + 18 < this.xOrigin*50 + this.width) &&
-    (unit.s.y < this.yOrigin*50 + this.width) &&
-    (unit.s.y > this.yOrigin*50 );
+    (unit.s.x + 18 >= this.xOrigin*50) &&
+    (unit.s.x + 18 <= this.xOrigin*50 + this.width) &&
+    (unit.s.y <= this.yOrigin*50 + this.width) &&
+    (unit.s.y >= this.yOrigin*50 );
     return b;
 }
