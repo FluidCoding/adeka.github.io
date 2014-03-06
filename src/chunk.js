@@ -138,7 +138,7 @@ Chunk.prototype.Draw = function () {
         var tilex = this.tiles[i].s.x + stage.x;
         var tiley = this.tiles[i].s.y + stage.y;
         var distance = Math.sqrt(Math.pow(tilex - 400, 2) + Math.pow(tiley - 450, 2));
-        if (distance < 650) {
+        if (distance < 200) {
             stage.addChild(this.tiles[i].s);
             this.tiles[i].Update();
             this.DrawUnits(this.tiles[i]);
