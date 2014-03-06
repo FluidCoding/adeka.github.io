@@ -4,6 +4,7 @@
 var canvas;
 	var stage;
     var tiles = [];
+    var units = [];
     var hero;
     //var moving = false;
     var speed = 1.5;
@@ -37,7 +38,7 @@ var canvas;
 		hero.s.x = -spawnOffset + 400;
 		hero.s.y = -spawnOffset + 400;
 	   // stage.addChild(hero);
-
+        units.push(hero);
         stage.x = spawnOffset;
         stage.y = spawnOffset;
         chunk = new Chunk();
@@ -171,75 +172,51 @@ var canvas;
         this.CheckUnitTileCollision();
         this.CenterScreen();
         this.Draw();
-        hero.Update();
+        this.UpdateUnits();
         stage.update();
     }
+Chunk.prototype.UpdateUnits = function(){
+    for(var i = 0; i < units.length; i++){
+        units[i].Update();
+    }
+}
 Chunk.prototype.Draw = function(){
-        hero.isDrawn = false;
         stage.removeAllChildren();
         //draw everything in the right order
         for(var i = 0; i < tiles.length; i++){
             var tilex = tiles[i].s.x + stage.x;
             var tiley = tiles[i].s.y + stage.y;
             var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 450, 2));
-
             if(distance < 650){
             stage.addChild(tiles[i].s);
             tiles[i].Update();
-                if(tiles[i] == hero.nextTile){
-                  if(!hero.isDrawn){
-                    stage.addChild(hero.shadow);
-                    stage.addChild(hero.s);
-                    hero.isDrawn = true;
-                  }
-                }
-                var n = i;
-                if(tiles[n].decal != null){
-                    stage.addChild(tiles[n].decal.s);
-                    tiles[n].decal.Update();
+                this.DrawUnits(tiles[i]);
+                if(tiles[i].decal != null){
+                    stage.addChild(tiles[i].decal.s);
+                    tiles[i].decal.Update();
                 }
             }
         }
 }
+Chunk.prototype.DrawUnits = function(tile){
+    for(var i = 0; i < units.length; i++){
+        units[i].Draw(tile, stage);
+    }
+}
 Chunk.prototype.SetUnitTiles = function(){
         //detect the tile directly underneath the hero
          for(var i = 0; i < tiles.length; i++){
-                if(
-                   ((hero.s.x + 18 < tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 + 0 > tiles[i].s.x - 0)) &&
-                   ((hero.s.y + 45 < tiles[i].s.y + 70 + tiles[i].colYOffset) &&
-                    (hero.s.y + 45 > tiles[i].s.y + 0))
-                  )
-                {
-                    hero.currentType = tiles[i].type;
-                    hero.currentTile = tiles[i];
-                    hero.nextTile = tiles[i + 1]
-                    hero.yOffset = tiles[i].yOffset;
-                }
+             for(var j = 0; j < units.length; j++){
+                  units[j].CheckTilePair(tiles[i], tiles[i+1]);
+             }
          }
 }
 Chunk.prototype.CheckUnitDecalCollision = function(){
         //decal collisions
         for(var i = 0; i < tiles.length; i++){
              if( tiles[i].decal ){
-                var dx = tiles[i].decal.s.x - tiles[i].decal.xOffset;
-                var dy = tiles[i].decal.s.y - tiles[i].decal.yOffset - 25 + tiles[i].yOffset;
-                var hx = hero.s.x;
-                var hy = hero.s.y;
-                var vhx = hero.s.x + hero.xVel;
-                var vhy = hero.s.y + hero.yVel;
-                var distance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - hy, 2));
-                var xdistance = Math.sqrt(Math.pow( dx - vhx, 2) + Math.pow( dy - hy, 2));
-                var ydistance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - vhy, 2));
-                 if(xdistance < 25){
-                     hero.colH = true;
-                 }
-                 if(ydistance < 25){
-                     hero.colV = true;
-                 }
-                 if(distance <= 25){
-                     //caught
-                      hero.s.y += 2;
+                 for(var j = 0; j < units.length; j++){
+                     units[j].CheckDecalCollision(tiles[i]);
                  }
             }
         }
@@ -247,24 +224,9 @@ Chunk.prototype.CheckUnitDecalCollision = function(){
 Chunk.prototype.CheckUnitTileCollision = function(){
         //tile collision
         for(var i = 0; i < tiles.length; i++){
-           if((tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
-               (tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
-               (tiles[i].decal && hero.jumping)){
-                if(((hero.s.x + 18 + hero.xVel < tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 + hero.xVel > tiles[i].s.x - 0)) &&
-                   ((hero.s.y < tiles[i].s.y + tiles[i].colYOffset ) &&
-                    (hero.s.y > tiles[i].s.y - 50 )))
-                {
-                    hero.colH = true;
-                }
-                if(((hero.s.x + 18 < tiles[i].s.x + 50) &&
-                    (hero.s.x + 18 > tiles[i].s.x - 0)) &&
-                   ((hero.s.y + hero.yVel < tiles[i].s.y + tiles[i].colYOffset ) &&
-                    (hero.s.y + hero.yVel > tiles[i].s.y - 50 )))
-                {
-                   hero.colV = true;
-                }
-            }
+             for(var j = 0; j < units.length; j++){
+                units[j].CheckTileCollision(tiles[i]);
+             }
         }
 }
 Chunk.prototype.CenterScreen = function(){

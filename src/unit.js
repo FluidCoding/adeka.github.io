@@ -117,8 +117,10 @@ function Unit() {
         this.shadow = new createjs.Bitmap("assets/shadow.png");
 }
         Unit.prototype.Update = function(){
+             this.isDrawn = false;
             this.CheckDrowning();
             if(!this.drowning){
+
                // this.Wander();
                 this.Animate();
                 this.CalculateJump();
@@ -257,6 +259,70 @@ function Unit() {
             if(this.xVel == 0 && this.yVel == 0){
                     this.Face("stop");
             }
+        }
+        Unit.prototype.CheckTilePair = function(tile, nextTile){
+            if(
+                   ((hero.s.x + 18 < tile.s.x + 50) &&
+                    (hero.s.x + 18 + 0 > tile.s.x - 0)) &&
+                   ((hero.s.y + 45 < tile.s.y + 70 + tile.colYOffset) &&
+                    (hero.s.y + 45 > tile.s.y + 0))
+                  )
+                {
+                    hero.currentType = tile.type;
+                    hero.currentTile = tile;
+                    hero.nextTile = nextTile;
+                    hero.yOffset = tile.yOffset;
+            }
+        }
+        Unit.prototype.CheckTileCollision = function(tile){
+            if((tile.type == 3 && !this.jumping && !this.drowning) ||
+                       (tile.type == 4 && this.currentType != 4 && !this.jumping || this.falling) ||
+                       (tile.decal && this.jumping)){
+                        if(((this.s.x + 18 + this.xVel < tile.s.x + 50) &&
+                            (this.s.x + 18 + this.xVel > tile.s.x - 0)) &&
+                           ((this.s.y < tile.s.y + tile.colYOffset ) &&
+                            (this.s.y > tile.s.y - 50 )))
+                        {
+                            this.colH = true;
+                        }
+                        if(((this.s.x + 18 < tile.s.x + 50) &&
+                            (this.s.x + 18 > tile.s.x - 0)) &&
+                           ((this.s.y + this.yVel < tile.s.y + tile.colYOffset ) &&
+                            (this.s.y + this.yVel > tile.s.y - 50 )))
+                        {
+                           this.colV = true;
+                        }
+                    }
+        }
+        Unit.prototype.CheckDecalCollision = function(tile){
+                        var dx = tile.decal.s.x - tile.decal.xOffset;
+                        var dy = tile.decal.s.y - tile.decal.yOffset - 25 + tile.yOffset;
+                        var hx = this.s.x;
+                        var hy = this.s.y;
+                        var vhx = this.s.x + this.xVel;
+                        var vhy = this.s.y + this.yVel;
+                        var distance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - hy, 2));
+                        var xdistance = Math.sqrt(Math.pow( dx - vhx, 2) + Math.pow( dy - hy, 2));
+                        var ydistance = Math.sqrt(Math.pow( dx - hx, 2) + Math.pow( dy - vhy, 2));
+                         if(xdistance < 25){
+                             this.colH = true;
+                         }
+                         if(ydistance < 25){
+                             this.colV = true;
+                         }
+                         if(distance <= 25){
+                             //caught
+                              this.s.y += 2;
+                         }
+        }
+        Unit.prototype.Draw = function(tile, stage){
+                if(tile == this.nextTile){
+                  if(!this.isDrawn){
+                    stage.addChild(this.shadow);
+                    stage.addChild(this.s);
+                    this.isDrawn = true;
+                  }
+                }
         }
         Unit.prototype.Wander = function(){
                 var sleepChance;
