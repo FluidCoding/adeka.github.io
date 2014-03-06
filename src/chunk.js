@@ -8,7 +8,7 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
 
     this.xOrigin = xOrigin;
     this.yOrigin = yOrigin;
-    this.chunkSize = 20;
+    this.chunkSize = 10;
     this.width = this.chunkSize*50;
     var tileCount = this.chunkSize * this.chunkSize;
     var xPos = xOrigin, yPos = yOrigin;
@@ -137,8 +137,8 @@ Chunk.prototype.Draw = function () {
     for (var i = 0; i < this.tiles.length; i++) {
         var tilex = this.tiles[i].s.x + stage.x;
         var tiley = this.tiles[i].s.y + stage.y;
-        var distance = Math.sqrt(Math.pow(tilex - 400, 2) + Math.pow(tiley - 450, 2));
-        if (distance < 450) {
+        var distance = Math.sqrt(Math.pow(tilex - 400, 2) + Math.pow(tiley - 400, 2));
+        if (distance < 300) {
             stage.addChild(this.tiles[i].s);
             this.tiles[i].Update();
             this.DrawUnits(this.tiles[i]);

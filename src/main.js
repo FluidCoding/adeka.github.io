@@ -23,7 +23,7 @@ var counter = 0;
 var chunks = [];
 var simplex = new SimplexNoise();
 var simplex2 = new SimplexNoise();
-var mapSize = 10;
+var mapSize = 5;
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
 function init() {
@@ -33,6 +33,7 @@ function init() {
     var spawnOffset = -100;
     stage = new createjs.Stage(canvas);
     hero = new NPC("deer");
+    //hero = new Hero();
     //hero.rootStage = stage;
     hero.s.x = -spawnOffset + 400;
     hero.s.y = -spawnOffset + 400;
@@ -48,14 +49,14 @@ function init() {
 
 
     var chunkCount = mapSize*mapSize;
-    var xOrigin = -20, yOrigin = -20;
+    var xOrigin = -10, yOrigin = -10;
     for(var i = 0; i < chunkCount; i++){
         if (i % mapSize == 0) {
-            xOrigin = -20;
-            yOrigin += 20;
+            xOrigin = -10;
+            yOrigin += 10;
         }
         else {
-            xOrigin += 20;
+            xOrigin += 10;
         }
         var chunk = new Chunk(stage, simplex, simplex2, xOrigin, yOrigin);
         chunks.push(chunk);
