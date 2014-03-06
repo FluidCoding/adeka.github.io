@@ -32,8 +32,8 @@ function init() {
     height = canvas.height;
     var spawnOffset = -100;
     stage = new createjs.Stage(canvas);
-    hero = new NPC("deer");
-    //hero = new Hero();
+    //hero = new NPC("deer");
+    hero = new Hero();
     //hero.rootStage = stage;
     hero.s.x = -spawnOffset + 400;
     hero.s.y = -spawnOffset + 400;
@@ -85,7 +85,7 @@ function tick(event) {
                  chunks[i].units.push(allUnits[j]);
                  //console.log("pushing");
                }
-               if(allUnits[j] instanceof NPC){
+               if(allUnits[j] instanceof Hero){
 
                     //draw top and adjacent chunks
                     if(i - this.mapSize >= 0) chunks[i - mapSize].Update();
