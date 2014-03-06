@@ -3,13 +3,11 @@
  */
 var canvas;
 var stage;
-var tiles = [];
-var units = [];
 var hero;
 //var moving = false;
-var speed = 1.5;
-// var wolf;
 
+// var wolf;
+var allUnits = [];
 var KEYCODE_ENTER = 13;
 var KEYCODE_SPACE = 32;
 var KEYCODE_UP = 38;
@@ -20,13 +18,14 @@ var KEYCODE_S = 83;
 var KEYCODE_A = 65;
 var KEYCODE_D = 68;
 var KEYCODE_F = 70;
-var mapSize = 20;
 var right = false, down = false;
 var counter = 0;
-var chunk;
+var chunks = [];
+var simplex = new SimplexNoise();
+var simplex2 = new SimplexNoise();
+var mapSize = 10;
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
-
 function init() {
     canvas = document.getElementById('myCanvas');
     width = canvas.width;
@@ -38,15 +37,72 @@ function init() {
     hero.s.x = -spawnOffset + 400;
     hero.s.y = -spawnOffset + 400;
     // stage.addChild(hero);
-    units.push(hero);
-    var b = new NPC("bunny");
-    b.s.x = -spawnOffset + 400;
-    b.s.y = -spawnOffset + 400;
+   // units.push(hero);
+   // var b = new NPC("bunny");
+   // b.s.x = -spawnOffset + 400;
+    //b.s.y = -spawnOffset + 400;
     //units.push(b);
-
+    allUnits.push(hero);
     stage.x = spawnOffset;
     stage.y = spawnOffset;
-    chunk = new Chunk();
+
+
+    var chunkCount = mapSize*mapSize;
+    var xOrigin = -20, yOrigin = -20;
+    for(var i = 0; i < chunkCount; i++){
+        if (i % mapSize == 0) {
+            xOrigin = 0;
+            yOrigin += 20;
+        }
+        else {
+            xOrigin += 20;
+        }
+        var chunk = new Chunk(stage, simplex, simplex2, xOrigin, yOrigin);
+        chunks.push(chunk);
+    }
+
+        //start game timer
+    if (!createjs.Ticker.hasEventListener("tick")) {
+        createjs.Ticker.addEventListener("tick", tick);
+    }
+    createjs.Ticker.setInterval(1);
+    createjs.Ticker.setFPS(60);
+    //stage.update();
+// chunks[0].units.push(allUnits[0]);
+}
+
+//main update loop
+function tick(event) {
+     counter++;
+    for(var i = 0; i < chunks.length; i++){
+        for(var j = 0; j < allUnits.length; j++){
+            if(chunks[i].ContainsUnit(allUnits[j])){
+               if(!chunks[i].units.contains(allUnits[j])){
+                 chunks[i].units.push(allUnits[j]);
+                 //console.log("pushing");
+               }
+               if(allUnits[j] instanceof Hero){
+                    chunks[i].Update();
+                    if(i > 0) chunks[i-1].Update();
+                    if(i < chunks.length - 1){
+                    chunks[i+1].Update();
+                    chunks[i + mapSize].Update();
+                    }
+               }
+            }
+            else{
+                if(chunks[i].units.contains(allUnits[j])){
+                    chunks[i].units = [];
+                }
+            }
+        }
+
+
+    }
+
+    stage.update();
+    CenterScreen();
+    stage.removeAllChildren();
 }
 
 //allow for WASD and arrow control scheme
@@ -57,6 +113,7 @@ function handleKeyDown(e) {
     }
     switch (e.keyCode) {
         case KEYCODE_F:
+            /*
             for (var i = 0; i < tiles.length; i++) {
                 if (tiles[i].decal != null) {
                     var tilex = tiles[i].s.x + stage.x;
@@ -67,6 +124,7 @@ function handleKeyDown(e) {
                     }
                 }
             }
+            */
             break;
         case KEYCODE_SPACE:
             hero.Jump();
@@ -111,196 +169,9 @@ function handleKeyUp(e) {
     }
 }
 
-//main update loop
-function tick(event) {
-    chunk.Update();
-    stage.update();
-}
-
-function Chunk() {
 
 
-    var simplex = new SimplexNoise();
-    var simplex2 = new SimplexNoise();
-
-
-    var tileCount = mapSize * mapSize;
-    var xPos = 0, yPos = 0;
-
-    for (var i = 0; i < tileCount; i++) {
-        var bunnyChance = Math.random() * 1000;
-        var wolfChance = Math.random() * 1000;
-        var deerChance = Math.random() * 1000;
-        var fishChance = Math.random() * 1000;
-        if (i % mapSize == 0) {
-            xPos = 0;
-            yPos += 1;
-        }
-        else {
-            xPos += 1;
-        }
-        var type;
-        var blurNoise = simplex.noise2D(xPos / 20, yPos / 20) * 10;
-        var landNoise = simplex.noise2D(xPos / 8, yPos / 8) * 15;
-        var noise = simplex.noise2D(xPos, yPos) * 10;
-        var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
-        var yOffset = 0;
-        if (blurNoise > 4) {
-            type = 3;
-            yOffset = 13;
-        }
-        else if (landNoise > 8) {
-            type = 4;
-            //yOffset = 8 - landNoise;
-        }
-        else if (blurNoise > 3) {
-            type = 2;
-        }
-        else {
-            type = 0;
-            yOffset = landNoise;
-        }
-
-        var tile = new Tile(type);
-
-        tile.s.x = xPos * 50 + 400 + tile.xOffset;
-        tile.s.y = yPos * 50 + 400 + yOffset;
-        if (type != 3) {
-            //if(decalNoise > 8){
-            //chests
-            //var decal = new Decal(0);
-            //tile.AddDecal(decal);
-            //}
-            //if(landNoise > 8){
-            //var decal = new Decal(2);
-            //tile.AddDecal(decal);
-            //}
-            //if(landNoise > 5){
-            //var decal = new Decal(3);
-            //tile.AddDecal(decal);
-            //}
-            if (noise > 4) {
-                var decal = new Decal(1);
-                tile.AddDecal(decal);
-            }
-            else if (noise > 3) {
-                var decal = new Decal(3);
-                tile.AddDecal(decal);
-            }
-
-            if (!tile.decal) {
-                if (bunnyChance > 988) {
-                    var bunny = new NPC("bunny");
-                    bunny.s.x = tile.s.x;
-                    bunny.s.y = tile.s.y;
-                    units.push(bunny);
-                }
-                else if (deerChance > 988) {
-                    var deer = new NPC("deer");
-                    deer.s.x = tile.s.x;
-                    deer.s.y = tile.s.y;
-                    units.push(deer);
-                }
-                else if (wolfChance > 988) {
-                    var deer = new NPC("wolf");
-                    deer.s.x = tile.s.x;
-                    deer.s.y = tile.s.y;
-                    units.push(deer);
-                }
-            }
-
-
-        }
-        else if(type == 3){
-            if(fishChance > 980){
-              var fish = new NPC("fish");
-                fish.s.x = tile.s.x;
-                fish.s.y = tile.s.y;
-                units.push(fish);
-            }
-        }
-        // stage.update();
-
-        tiles.push(tile);
-    }
-    //start game timer
-    if (!createjs.Ticker.hasEventListener("tick")) {
-        createjs.Ticker.addEventListener("tick", tick);
-    }
-    createjs.Ticker.setInterval(1);
-    createjs.Ticker.setFPS(60);
-    //stage.update();
-}
-
-Chunk.prototype.Update = function () {
-    counter++;
-    this.SetUnitTiles();
-    this.CheckUnitDecalCollision();
-    this.CheckUnitTileCollision();
-    this.CenterScreen();
-    this.UpdateUnits();
-    this.Draw();
-
-    stage.update();
-}
-Chunk.prototype.UpdateUnits = function () {
-    for (var i = 0; i < units.length; i++) {
-        units[i].Update();
-        if (units[i] instanceof NPC) {
-            units[i].Wander();
-        }
-    }
-}
-Chunk.prototype.Draw = function () {
-    stage.removeAllChildren();
-    //draw everything in the right order
-    for (var i = 0; i < tiles.length; i++) {
-        var tilex = tiles[i].s.x + stage.x;
-        var tiley = tiles[i].s.y + stage.y;
-        var distance = Math.sqrt(Math.pow(tilex - 400, 2) + Math.pow(tiley - 450, 2));
-        if (distance < 650) {
-            stage.addChild(tiles[i].s);
-            tiles[i].Update();
-            this.DrawUnits(tiles[i]);
-            if (tiles[i].decal != null) {
-                stage.addChild(tiles[i].decal.s);
-                tiles[i].decal.Update();
-            }
-        }
-    }
-}
-Chunk.prototype.DrawUnits = function (tile) {
-    for (var i = 0; i < units.length; i++) {
-        units[i].Draw(tile, stage);
-    }
-}
-Chunk.prototype.SetUnitTiles = function () {
-    //detect the tile directly underneath the hero
-    for (var i = 0; i < tiles.length; i++) {
-        for (var j = 0; j < units.length; j++) {
-            units[j].CheckTilePair(tiles[i], tiles[i + 1]);
-        }
-    }
-}
-Chunk.prototype.CheckUnitDecalCollision = function () {
-    //decal collisions
-    for (var i = 0; i < tiles.length; i++) {
-        if (tiles[i].decal) {
-            for (var j = 0; j < units.length; j++) {
-                units[j].CheckDecalCollision(tiles[i]);
-            }
-        }
-    }
-}
-Chunk.prototype.CheckUnitTileCollision = function () {
-    //tile collision
-    for (var i = 0; i < tiles.length; i++) {
-        for (var j = 0; j < units.length; j++) {
-            units[j].CheckTileCollision(tiles[i]);
-        }
-    }
-}
-Chunk.prototype.CenterScreen = function () {
+CenterScreen = function () {
     //move screen to center on hero
     if (-stage.x < hero.s.x - 400) {
         stage.x -= hero.speed;
@@ -314,4 +185,13 @@ Chunk.prototype.CenterScreen = function () {
     if (-stage.y > hero.s.y - 400) {
         stage.y += hero.speed;
     }
+}
+
+Array.prototype.contains = function(elem)
+{
+   for (var i in this)
+   {
+       if (this[i] == elem) return true;
+   }
+   return false;
 }

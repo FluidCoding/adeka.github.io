@@ -8,10 +8,10 @@ function Hero() {
     Unit.call(this);
     this.anims = new createjs.SpriteSheet({
         "animations": {
-            "down": [0, 2, "down", .1],
-            "up": [3, 5, "up", .1],
-            "right": [6, 8, "right", .1],
-            "left": [9, 11, "left", .1]},
+            "down": [0, 2, "down", this.framerate],
+            "up": [3, 5, "up", this.framerate],
+            "right": [6, 8, "right", this.framerate],
+            "left": [9, 11, "left", this.framerate]},
 
         "images": ["assets/spritesheet.png"],
 
