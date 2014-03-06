@@ -30,7 +30,7 @@ function init() {
     canvas = document.getElementById('myCanvas');
     width = canvas.width;
     height = canvas.height;
-    var spawnOffset = -500;
+    var spawnOffset = -100;
     stage = new createjs.Stage(canvas);
     hero = new NPC("bunny");
     //hero.rootStage = stage;
