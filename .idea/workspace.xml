@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29879ed-c439-471a-bcb6-73a6a39a3a0a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/adeka.github.io.iml" afterPath="$PROJECT_DIR$/.idea/adeka.github.io.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chunk.js" afterPath="$PROJECT_DIR$/src/chunk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hero.js" afterPath="$PROJECT_DIR$/src/hero.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -30,16 +31,16 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="79" selection-start="439" selection-end="439" vertical-scroll-proportion="-7.68" vertical-offset="0" max-vertical-offset="1104">
+            <state line="16" column="76" selection-start="740" selection-end="740" vertical-scroll-proportion="-10.24" vertical-offset="0" max-vertical-offset="1104">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="50" selection-start="2258" selection-end="2258" vertical-scroll-proportion="-0.80604136" vertical-offset="1867" max-vertical-offset="3408">
+            <state line="28" column="17" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="3408">
               <folding />
             </state>
           </provider>
@@ -48,7 +49,7 @@
       <file leaf-file-name="chunk.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chunk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="166" column="57" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.0" vertical-offset="2656" max-vertical-offset="3104">
+            <state line="29" column="57" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="3104">
               <folding />
             </state>
           </provider>
@@ -72,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hero.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="hero.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hero.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="43" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="592">
+            <state line="27" column="36" selection-start="646" selection-end="646" vertical-scroll-proportion="0.63593006" vertical-offset="0" max-vertical-offset="629">
               <folding />
             </state>
           </provider>
@@ -106,10 +107,10 @@
         <option value="$PROJECT_DIR$/src/ss.html" />
         <option value="$PROJECT_DIR$/src/npc.js" />
         <option value="$PROJECT_DIR$/src/unit.js" />
-        <option value="$PROJECT_DIR$/src/hero.js" />
-        <option value="$PROJECT_DIR$/src/chunk.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/src/chunk.js" />
         <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/hero.js" />
       </list>
     </option>
   </component>
@@ -547,30 +548,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hero.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="43" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="592">
+        <state line="16" column="76" selection-start="740" selection-end="740" vertical-scroll-proportion="-10.24" vertical-offset="0" max-vertical-offset="1104">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chunk.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="57" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.0" vertical-offset="2367" max-vertical-offset="3264">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="79" selection-start="439" selection-end="439" vertical-scroll-proportion="-7.68" vertical-offset="0" max-vertical-offset="1104">
+        <state line="29" column="57" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="3104">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="50" selection-start="2258" selection-end="2258" vertical-scroll-proportion="-0.80604136" vertical-offset="1867" max-vertical-offset="3408">
+        <state line="28" column="17" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="3408">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hero.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="36" selection-start="646" selection-end="646" vertical-scroll-proportion="0.63593006" vertical-offset="0" max-vertical-offset="629">
           <folding />
         </state>
       </provider>

@@ -51,7 +51,7 @@ function init() {
     var xOrigin = -20, yOrigin = -20;
     for(var i = 0; i < chunkCount; i++){
         if (i % mapSize == 0) {
-            xOrigin = 0;
+            xOrigin = -20;
             yOrigin += 20;
         }
         else {

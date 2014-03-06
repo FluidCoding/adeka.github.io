@@ -9,7 +9,7 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
     this.chunkSize = 20;
     this.width = this.chunkSize*50;
     var tileCount = this.chunkSize * this.chunkSize;
-    var xPos = 0, yPos = 0;
+    var xPos = xOrigin, yPos = yOrigin;
 
     this.tiles = [];
     this.units = [];
@@ -20,7 +20,7 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
         var deerChance = Math.random() * 1000;
         var fishChance = Math.random() * 1000;
         if (i % this.chunkSize == 0) {
-            xPos = 0;
+            xPos = this.xOrigin;
             yPos += 1;
         }
         else {
@@ -50,8 +50,8 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
 
         var tile = new Tile(type);
 
-        tile.s.x = xPos * 50 + this.xOrigin*50 + tile.xOffset;
-        tile.s.y = yPos * 50 + this.yOrigin*50 + yOffset;
+        tile.s.x = xPos * 50 + 0 + tile.xOffset;
+        tile.s.y = yPos * 50 + 0 + yOffset;
         if (type != 3) {
             //if(decalNoise > 8){
             //chests

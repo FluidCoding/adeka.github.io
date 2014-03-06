@@ -6,6 +6,7 @@
  */
 function Hero() {
     Unit.call(this);
+
     this.anims = new createjs.SpriteSheet({
         "animations": {
             "down": [0, 2, "down", this.framerate],
