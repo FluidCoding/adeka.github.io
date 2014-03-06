@@ -138,13 +138,13 @@ Chunk.prototype.Draw = function () {
         var tilex = this.tiles[i].s.x + stage.x;
         var tiley = this.tiles[i].s.y + stage.y;
         var distance = Math.sqrt(Math.pow(tilex - 400, 2) + Math.pow(tiley - 450, 2));
-        if (distance < 200) {
+        if (distance < 450) {
             stage.addChild(this.tiles[i].s);
             this.tiles[i].Update();
             this.DrawUnits(this.tiles[i]);
             if (this.tiles[i].decal != null) {
                 stage.addChild(this.tiles[i].decal.s);
-                this.tiles[i].decal.Update();
+                //this.tiles[i].decal.Update();
             }
         }
     }
@@ -159,10 +159,10 @@ Chunk.prototype.SetUnitTiles = function () {
     for (var i = 0; i < this.tiles.length; i++) {
         for (var j = 0; j < this.units.length; j++) {
             var nextTile;
-            if(i % this.chunkSize == 0){
+            if(i + 1 % this.chunkSize == 0){
                 //nextTile = this.tiles[i - 1];
 
-                nextTile = this.nextChunk.tiles[i - this.chunkSize + 1];
+               // nextTile = this.nextChunk.tiles[i - this.chunkSize + 1];
             }
             else{
                 nextTile = this.tiles[i + 1];
