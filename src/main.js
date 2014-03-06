@@ -131,6 +131,7 @@ function Chunk() {
         var bunnyChance = Math.random() * 1000;
         var wolfChance = Math.random() * 1000;
         var deerChance = Math.random() * 1000;
+        var fishChance = Math.random() * 1000;
         if (i % mapSize == 0) {
             xPos = 0;
             yPos += 1;
@@ -209,6 +210,14 @@ function Chunk() {
             }
 
 
+        }
+        else if(type == 3){
+            if(fishChance > 980){
+              var fish = new NPC("fish");
+                fish.s.x = tile.s.x;
+                fish.s.y = tile.s.y;
+                units.push(fish);
+            }
         }
         // stage.update();
 

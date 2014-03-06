@@ -20,13 +20,15 @@ function Unit() {
     this.nextTile;
     this.colH = false;
     this.colV = false;
-
+    this.aquatic = false;
     this.newY = 0;
     this.shadow = new createjs.Bitmap("assets/shadow.png");
 }
 Unit.prototype.Update = function () {
     this.isDrawn = false;
-    this.CheckDrowning();
+    if(!this.aquatic){
+        this.CheckDrowning();
+    }
     if (!this.drowning) {
         this.Animate();
         this.CalculateJump();
@@ -179,18 +181,24 @@ Unit.prototype.CheckTilePair = function (tile, nextTile) {
     }
 }
 Unit.prototype.CheckTileCollision = function (tile) {
-    if ((tile.type == 3 && !this.jumping && !this.drowning) ||
+    var aquaticOffset = 0;
+    if(this.aquatic) aquaticOffset = 60;
+    if ((tile.type == 0 && this.aquatic) ||
+        (tile.type == 2 && this.aquatic) ||
+        (tile.type == 4 && this.aquatic) ||
+        (!this.aquatic &&
+        (tile.type == 3 && !this.jumping && !this.drowning) ||
         (tile.type == 4 && this.currentType != 4 && !this.jumping || this.falling) ||
-        (tile.decal && this.jumping)) {
-        if (((this.s.x + 18 + this.xVel < tile.s.x + 50) &&
-            (this.s.x + 18 + this.xVel > tile.s.x - 0)) &&
-            ((this.s.y < tile.s.y + tile.colYOffset ) &&
+        (tile.decal && this.jumping))) {
+        if (((this.s.x + 18 + this.xVel < tile.s.x + 50 + aquaticOffset/2) &&
+            (this.s.x + 18 + this.xVel > tile.s.x - 0 - aquaticOffset/2)) &&
+            ((this.s.y < tile.s.y + tile.colYOffset + aquaticOffset ) &&
                 (this.s.y > tile.s.y - 50 ))) {
             this.colH = true;
         }
-        if (((this.s.x + 18 < tile.s.x + 50) &&
-            (this.s.x + 18 > tile.s.x - 0)) &&
-            ((this.s.y + this.yVel < tile.s.y + tile.colYOffset ) &&
+        if (((this.s.x + 18 < tile.s.x + 50 + aquaticOffset/2) &&
+            (this.s.x + 18 > tile.s.x - 0 - aquaticOffset/2)) &&
+            ((this.s.y + this.yVel < tile.s.y + tile.colYOffset + aquaticOffset ) &&
                 (this.s.y + this.yVel > tile.s.y - 50 ))) {
             this.colV = true;
         }
@@ -220,14 +228,15 @@ Unit.prototype.CheckDecalCollision = function (tile) {
 Unit.prototype.Draw = function (tile, stage) {
     if (tile == this.nextTile) {
         if (!this.isDrawn) {
-            stage.addChild(this.shadow);
+            if(!this.aquatic) stage.addChild(this.shadow);
             stage.addChild(this.s);
             this.isDrawn = true;
         }
     }
 }
-
-
+Unit.prototype.GetColH = function(){
+    return this.colH;
+}
 /**
  * Created by gramp_000 on 3/2/14.
  */

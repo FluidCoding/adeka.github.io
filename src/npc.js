@@ -72,6 +72,28 @@ function NPC(type) {
                 }
             });
             break;
+        case "fish" :
+            this.aquatic = true;
+            this.speed = .5;
+            this.anims = new createjs.SpriteSheet({
+                "animations": {
+                    "down": [0, 2, "down", this.framerate],
+                    "left": [3, 5, "left", this.framerate],
+                    "right": [6, 8, "right", this.framerate],
+                    "up": [9, 11, "up", this.framerate]},
+
+                "images": ["assets/fish.png"],
+
+                "frames": {
+                    "height": 31,
+                    "width": 31,
+                    "regX": 0,
+                    "regY": -7,
+                    "count": 12
+
+                }
+            });
+            break;
     }
     this.s = new createjs.Sprite(this.anims, this.dir);
 }
@@ -85,14 +107,15 @@ NPC.prototype.Wander = function () {
         this.wanderTimer++;
 
     }
-    if (this.colH) {
-        this.wanderX = -this.wanderX;
-        this.wanderY = -this.wanderY;
-        console.log("col");
+    //if (Unit.prototype.GetColH.call(this)) {
+      //  this.wanderX = -this.wanderX;
+       // this.wanderY = -this.wanderY;
+        //console.log("col");
         //this.wanderTimer += 25;
         //NPC.prototype.Jump();
         //this.jumping = true;
-    }
+    //}
+   // Unit.prototype.Jump.call(this);
     if (this.wanderTimer >= 100) {
         //console.log("reset");
         this.wanderTimer = 0;
