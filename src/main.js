@@ -22,16 +22,17 @@ var canvas;
     var mapSize = 50;
     var right = false, down = false;
     var counter = 0;
+    var chunk;
 	document.onkeydown = handleKeyDown;
 	document.onkeyup = handleKeyUp;
 
 	function init() {
-	    canvas = document.getElementById('myCanvas');
+        canvas = document.getElementById('myCanvas');
 	    width = canvas.width;
 	    height = canvas.height;
         var  spawnOffset = -500;
 	    stage = new createjs.Stage(canvas);
-        hero = new Hero();
+        hero = new Unit();
         hero.rootStage = stage;
 		hero.s.x = -spawnOffset + 400;
 		hero.s.y = -spawnOffset + 400;
@@ -39,107 +40,8 @@ var canvas;
 
         stage.x = spawnOffset;
         stage.y = spawnOffset;
-
-        var simplex = new SimplexNoise();
-        var simplex2 = new SimplexNoise();
-
-
-        var tileCount = mapSize*mapSize;
-        var xPos = 0, yPos = 0;
-
-        for(var i=0;i< tileCount;i++){
-            if(i % mapSize == 0){
-                xPos = 0;
-                yPos += 1;
-            }
-            else{
-                xPos += 1;
-            }
-            var type;
-            var blurNoise = simplex.noise2D(xPos/20, yPos/20) * 10;
-            var landNoise = simplex.noise2D(xPos/8, yPos/8) * 15;
-            var noise = simplex.noise2D(xPos, yPos) * 10;
-            var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
-            var yOffset = 0;
-            if(blurNoise > 4){
-                type = 3;
-                yOffset = 13;
-            }
-            else if(landNoise > 8){
-                type = 4;
-                //yOffset = 8 - landNoise;
-            }
-            else if(blurNoise > 3){
-                type = 2;
-            }
-            else{
-                type = 0;
-                yOffset = landNoise;
-            }
-            
-            var tile = new Tile(type);
-
-            tile.s.x = xPos * 50 + 400 + tile.xOffset;
-            tile.s.y = yPos * 50 + 400 + yOffset;
-            if(type != 3){
-                //if(decalNoise > 8){
-                //chests
-                //var decal = new Decal(0);
-                //tile.AddDecal(decal);
-                //}
-                //if(landNoise > 8){
-                //var decal = new Decal(2);
-                //tile.AddDecal(decal);
-                //}
-                //if(landNoise > 5){
-                //var decal = new Decal(3);
-                //tile.AddDecal(decal);
-                //}
-                if(noise > 4){
-                var decal = new Decal(1);
-                tile.AddDecal(decal);
-                }
-                else if(noise > 3){
-                var decal = new Decal(3);
-                tile.AddDecal(decal);
-                }
-            }
-           // stage.update();
-            tiles.push(tile);
-        }
-        //start game timer
-		if (!createjs.Ticker.hasEventListener("tick")) {
-			createjs.Ticker.addEventListener("tick", tick);
-		}
-        createjs.Ticker.setInterval(1);
-        createjs.Ticker.setFPS(60);
-	    //stage.update();
-	}
-
-/*
-	function Wolf() {
-        this.anims = new createjs.SpriteSheet({
-				"animations":
-				{
-					"down": [0, 2, "down", .1],
-					"left": [3, 5, "left",.1],
-                    "right": [6, 8, "right",.1],
-                    "up": [9, 11, "up",.1]},
-
-					"images": ["assets/wolf.png"],
-
-					"frames":
-						{
-							"height": 35,
-							"width":34,
-							"regX": 0,
-							"regY": 0,
-							"count": 12
-
-						}
-		});
+        chunk = new Chunk();
     }
-*/
 
     //allow for WASD and arrow control scheme
 	function handleKeyDown(e) {
@@ -179,20 +81,127 @@ var canvas;
 
     //main update loop
     function tick(event) {
+       chunk.Update();
+       stage.update();
+    }
+
+ function Chunk(){
+
+
+        var simplex = new SimplexNoise();
+        var simplex2 = new SimplexNoise();
+
+
+        var tileCount = mapSize*mapSize;
+        var xPos = 0, yPos = 0;
+
+        for(var i=0;i< tileCount;i++){
+            if(i % mapSize == 0){
+                xPos = 0;
+                yPos += 1;
+            }
+            else{
+                xPos += 1;
+            }
+            var type;
+            var blurNoise = simplex.noise2D(xPos/20, yPos/20) * 10;
+            var landNoise = simplex.noise2D(xPos/8, yPos/8) * 15;
+            var noise = simplex.noise2D(xPos, yPos) * 10;
+            var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
+            var yOffset = 0;
+            if(blurNoise > 4){
+                type = 3;
+                yOffset = 13;
+            }
+            else if(landNoise > 8){
+                type = 4;
+                //yOffset = 8 - landNoise;
+            }
+            else if(blurNoise > 3){
+                type = 2;
+            }
+            else{
+                type = 0;
+                yOffset = landNoise;
+            }
+
+            var tile = new Tile(type);
+
+            tile.s.x = xPos * 50 + 400 + tile.xOffset;
+            tile.s.y = yPos * 50 + 400 + yOffset;
+            if(type != 3){
+                //if(decalNoise > 8){
+                //chests
+                //var decal = new Decal(0);
+                //tile.AddDecal(decal);
+                //}
+                //if(landNoise > 8){
+                //var decal = new Decal(2);
+                //tile.AddDecal(decal);
+                //}
+                //if(landNoise > 5){
+                //var decal = new Decal(3);
+                //tile.AddDecal(decal);
+                //}
+                if(noise > 4){
+                var decal = new Decal(1);
+                tile.AddDecal(decal);
+                }
+                else if(noise > 3){
+                var decal = new Decal(3);
+                tile.AddDecal(decal);
+                }
+            }
+           // stage.update();
+            tiles.push(tile);
+        }
+        //start game timer
+		if (!createjs.Ticker.hasEventListener("tick")) {
+			createjs.Ticker.addEventListener("tick", tick);
+		}
+        createjs.Ticker.setInterval(1);
+        createjs.Ticker.setFPS(60);
+	    //stage.update();
+	}
+
+ Chunk.prototype.Update = function() {
         counter++;
-        stage.removeAllChildren();
+        this.SetUnitTiles();
+        this.CheckUnitDecalCollision();
+        this.CheckUnitTileCollision();
+        this.CenterScreen();
+        this.Draw();
+        hero.Update();
+        stage.update();
+    }
+Chunk.prototype.Draw = function(){
         hero.isDrawn = false;
+        stage.removeAllChildren();
+        //draw everything in the right order
+        for(var i = 0; i < tiles.length; i++){
+            var tilex = tiles[i].s.x + stage.x;
+            var tiley = tiles[i].s.y + stage.y;
+            var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 450, 2));
 
-        var leftX = 0;
-        var rightX = 0;
-        if(hero.sideDir == "left" && hero.currentTile != 4){
-            leftX = -10;
+            if(distance < 650){
+            stage.addChild(tiles[i].s);
+            tiles[i].Update();
+                if(tiles[i] == hero.nextTile){
+                  if(!hero.isDrawn){
+                    stage.addChild(hero.shadow);
+                    stage.addChild(hero.s);
+                    hero.isDrawn = true;
+                  }
+                }
+                var n = i;
+                if(tiles[n].decal != null){
+                    stage.addChild(tiles[n].decal.s);
+                    tiles[n].decal.Update();
+                }
+            }
         }
-        if(hero.sideDir == "right" && hero.currentTile != 4){
-            rightX = 6;
-        }
-
-
+}
+Chunk.prototype.SetUnitTiles = function(){
         //detect the tile directly underneath the hero
          for(var i = 0; i < tiles.length; i++){
                 if(
@@ -208,6 +217,8 @@ var canvas;
                     hero.yOffset = tiles[i].yOffset;
                 }
          }
+}
+Chunk.prototype.CheckUnitDecalCollision = function(){
         //decal collisions
         for(var i = 0; i < tiles.length; i++){
              if( tiles[i].decal ){
@@ -232,11 +243,10 @@ var canvas;
                  }
             }
         }
-
-
+}
+Chunk.prototype.CheckUnitTileCollision = function(){
         //tile collision
         for(var i = 0; i < tiles.length; i++){
-            //(tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
            if((tiles[i].type == 3 && !hero.jumping && !hero.drowning) ||
                (tiles[i].type == 4 && hero.currentType != 4 && !hero.jumping || hero.falling) ||
                (tiles[i].decal && hero.jumping)){
@@ -256,8 +266,9 @@ var canvas;
                 }
             }
         }
-
-        //move screen to center on hero
+}
+Chunk.prototype.CenterScreen = function(){
+            //move screen to center on hero
         if(-stage.x < hero.s.x - 400){
            stage.x-= hero.speed;
         }
@@ -270,30 +281,4 @@ var canvas;
         if(-stage.y > hero.s.y - 400){
            stage.y+= hero.speed;
         }
-
-        //draw everything in the right order
-        for(var i = 0; i < tiles.length; i++){
-            var tilex = tiles[i].s.x + stage.x;
-            var tiley = tiles[i].s.y + stage.y;
-            var distance = Math.sqrt(Math.pow( tilex - 400, 2) + Math.pow( tiley - 450, 2));
-
-            if(distance < 650){
-            stage.addChild(tiles[i].s);
-            tiles[i].Update();
-                if(tiles[i] == hero.nextTile){
-                  if(!hero.isDrawn){
-                    stage.addChild(hero.shadow);
-                    stage.addChild(hero.s);
-                    hero.isDrawn = true;
-                  }
-                }
-                var n = i;
-                if(tiles[n].decal != null){
-                    stage.addChild(tiles[n].decal.s);
-                    tiles[n].decal.Update();
-                }
-            }
-        }
-        hero.Update();
-        stage.update();
-    }
+}
