@@ -2,12 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f29879ed-c439-471a-bcb6-73a6a39a3a0a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/hero.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/AlphaMapFilter.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/AlphaMapFilter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/AlphaMaskFilter.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/AlphaMaskFilter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Bitmap.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Bitmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/BitmapAnimation.js" afterPath="$PROJECT_DIR$/src/easeljs/display/BitmapAnimation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/BitmapText.js" afterPath="$PROJECT_DIR$/src/easeljs/display/BitmapText.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/BlurFilter.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/BlurFilter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/ui/ButtonHelper.js" afterPath="$PROJECT_DIR$/src/easeljs/ui/ButtonHelper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/ColorFilter.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/ColorFilter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/ColorMatrix.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/ColorMatrix.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/ColorMatrixFilter.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/ColorMatrixFilter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Container.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Container.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/DOMElement.js" afterPath="$PROJECT_DIR$/src/easeljs/display/DOMElement.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/DisplayObject.js" afterPath="$PROJECT_DIR$/src/easeljs/display/DisplayObject.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/createjs/events/Event.js" afterPath="$PROJECT_DIR$/src/createjs/events/Event.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/createjs/events/EventDispatcher.js" afterPath="$PROJECT_DIR$/src/createjs/events/EventDispatcher.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/filters/Filter.js" afterPath="$PROJECT_DIR$/src/easeljs/filters/Filter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Graphics.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Graphics.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/createjs/utils/IndexOf.js" afterPath="$PROJECT_DIR$/src/createjs/utils/IndexOf.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/geom/Matrix2D.js" afterPath="$PROJECT_DIR$/src/easeljs/geom/Matrix2D.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/events/MouseEvent.js" afterPath="$PROJECT_DIR$/src/easeljs/events/MouseEvent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/MovieClip.js" afterPath="$PROJECT_DIR$/src/easeljs/display/MovieClip.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/geom/Point.js" afterPath="$PROJECT_DIR$/src/easeljs/geom/Point.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/geom/Rectangle.js" afterPath="$PROJECT_DIR$/src/easeljs/geom/Rectangle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Shadow.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Shadow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Shape.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Shape.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Sprite.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Sprite.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/SpriteSheet.js" afterPath="$PROJECT_DIR$/src/easeljs/display/SpriteSheet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/utils/SpriteSheetBuilder.js" afterPath="$PROJECT_DIR$/src/easeljs/utils/SpriteSheetBuilder.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/utils/SpriteSheetUtils.js" afterPath="$PROJECT_DIR$/src/easeljs/utils/SpriteSheetUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Stage.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Stage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/display/Text.js" afterPath="$PROJECT_DIR$/src/easeljs/display/Text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/utils/Ticker.js" afterPath="$PROJECT_DIR$/src/easeljs/utils/Ticker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/ui/Touch.js" afterPath="$PROJECT_DIR$/src/easeljs/ui/Touch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/utils/UID.js" afterPath="$PROJECT_DIR$/src/easeljs/utils/UID.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/decal.js" afterPath="$PROJECT_DIR$/src/decal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hero.js" afterPath="$PROJECT_DIR$/src/hero.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/npc.js" afterPath="$PROJECT_DIR$/src/npc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/simplex-noise.js" afterPath="$PROJECT_DIR$/src/simplex-noise.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tile.js" afterPath="$PROJECT_DIR$/src/tile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/unit.js" afterPath="$PROJECT_DIR$/src/unit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/version.js" afterPath="$PROJECT_DIR$/src/easeljs/version.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/easeljs/version_movieclip.js" afterPath="$PROJECT_DIR$/src/easeljs/version_movieclip.js" />
     </list>
     <ignored path="adeka.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,7 +79,7 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="37" selection-start="4735" selection-end="4735" vertical-scroll-proportion="0.49275362" vertical-offset="2278" max-vertical-offset="4879">
+            <state line="91" column="0" selection-start="2260" selection-end="2260" vertical-scroll-proportion="0.20401338" vertical-offset="1364" max-vertical-offset="5321">
               <folding />
             </state>
           </provider>
@@ -51,7 +88,7 @@
       <file leaf-file-name="tile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="31" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.0" vertical-offset="106" max-vertical-offset="1003">
+            <state line="35" column="27" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
               <folding />
             </state>
           </provider>
@@ -60,7 +97,7 @@
       <file leaf-file-name="decal.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/decal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="22" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+            <state line="17" column="18" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
               <folding />
             </state>
           </provider>
@@ -69,7 +106,7 @@
       <file leaf-file-name="unit.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/unit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="25" selection-start="316" selection-end="316" vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="4148">
+            <state line="9" column="25" selection-start="236" selection-end="236" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="4063">
               <folding />
             </state>
           </provider>
@@ -78,7 +115,7 @@
       <file leaf-file-name="hero.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hero.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="44" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+            <state line="13" column="41" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
               <folding />
             </state>
           </provider>
@@ -87,10 +124,8 @@
       <file leaf-file-name="npc.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/npc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="45" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2125">
-              <folding>
-                <element signature="n#!!doc;n#NPC#0" expanded="false" />
-              </folding>
+            <state line="12" column="29" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2159">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -524,38 +559,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/decal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="22" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="832">
+        <state line="17" column="18" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="31" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="944">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hero.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="44" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+        <state line="35" column="27" selection-start="957" selection-end="957" vertical-scroll-proportion="0.0" vertical-offset="106" max-vertical-offset="1003">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/unit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="25" selection-start="316" selection-end="316" vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="4148">
+        <state line="9" column="25" selection-start="236" selection-end="236" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="4063">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hero.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="41" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/npc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="45" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2125">
-          <folding>
-            <element signature="n#!!doc;n#NPC#0" expanded="false" />
-          </folding>
+        <state line="12" column="29" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2159">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -568,7 +601,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="37" selection-start="4735" selection-end="4735" vertical-scroll-proportion="0.49275362" vertical-offset="2278" max-vertical-offset="4879">
+        <state line="91" column="0" selection-start="2260" selection-end="2260" vertical-scroll-proportion="0.20401338" vertical-offset="1364" max-vertical-offset="5321">
           <folding />
         </state>
       </provider>
