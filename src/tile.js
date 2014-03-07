@@ -2,6 +2,8 @@
  * Created by gramp_000 on 3/2/14.
  */
 function Tile(type) {
+    this.xPos = 0;
+    this.yPos = 0;
     this.xOffset = 0;
     this.yOffset = 0;
     this.colYOffset = 0;

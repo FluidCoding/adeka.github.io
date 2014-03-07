@@ -23,14 +23,14 @@ var counter = 0;
 var chunks = [];
 var simplex = new SimplexNoise();
 var simplex2 = new SimplexNoise();
-var mapSize = 50;
+var mapSize = 10;
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
 function init() {
     canvas = document.getElementById('myCanvas');
     width = canvas.width;
     height = canvas.height;
-    var spawnOffset = -100;
+    var spawnOffset = -200;
     stage = new createjs.Stage(canvas);
     //hero = new NPC("deer");
     hero = new Hero();
@@ -59,10 +59,11 @@ function init() {
             xOrigin += 10;
         }
         var chunk = new Chunk(stage, simplex, simplex2, xOrigin, yOrigin);
-        chunks.push(chunk);
         if(i>0){
             chunks[i-1].nextChunk = chunk;
         }
+        chunks.push(chunk);
+
     }
 
         //start game timer
@@ -79,6 +80,10 @@ function init() {
 function tick(event) {
    // console.log(chunks.length*chunks[0].tiles.length);
      counter++;
+
+    for(var j = 0; j < allUnits.length; j++){
+         allUnits[j].Update();
+    }
     for(var i = 0; i < chunks.length; i++){
         for(var j = 0; j < allUnits.length; j++){
             if(chunks[i].ContainsUnit(allUnits[j])){
@@ -86,7 +91,7 @@ function tick(event) {
                  chunks[i].units.push(allUnits[j]);
                  //console.log("pushing");
                }
-               if(allUnits[j] instanceof Hero){
+               if(allUnits[j] instanceof Hero && allUnits[j].updated == false){
 
                     //draw top and adjacent chunks
                     if(i - this.mapSize >= 0) chunks[i - mapSize].Update();
@@ -102,6 +107,7 @@ function tick(event) {
                     if(i + this.mapSize - 1 < chunks.length - 1) chunks[i + mapSize - 1].Update();
                     if(i + this.mapSize < chunks.length - 1) chunks[i + mapSize].Update();
                     if(i + this.mapSize + 1 < chunks.length - 1) chunks[i + mapSize + 1].Update();
+
 
 
                }

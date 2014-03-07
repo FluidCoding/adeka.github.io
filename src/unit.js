@@ -23,17 +23,17 @@ function Unit() {
     this.aquatic = false;
     this.newY = 0;
     this.shadow = new createjs.Bitmap("assets/shadow.png");
+    this.updated = false;
 }
 Unit.prototype.Update = function () {
-    this.isDrawn = false;
-    if(!this.aquatic){
-        this.CheckDrowning();
-    }
-    if (!this.drowning) {
-        this.Animate();
-        this.CalculateJump();
-        this.CalculatePosition();
-    }
+        if(!this.aquatic){
+            this.CheckDrowning();
+        }
+        if (!this.drowning) {
+            this.Animate();
+            this.CalculateJump();
+            this.CalculatePosition();
+        }
 }
 Unit.prototype.Jump = function () {
     this.jumping = true;
@@ -226,6 +226,7 @@ Unit.prototype.CheckDecalCollision = function (tile) {
     }
 }
 Unit.prototype.Draw = function (tile, stage) {
+    this.isDrawn = false;
     if (tile == this.nextTile) {
         if (!this.isDrawn) {
             if(!this.aquatic) stage.addChild(this.shadow);

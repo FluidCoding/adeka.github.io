@@ -54,6 +54,8 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
 
         tile.s.x = xPos * 50 + 0 + tile.xOffset;
         tile.s.y = yPos * 50 + 0 + yOffset;
+        tile.xPos = xPos;
+        tile.yPos = yPos;
         if (type != 3) {
             //if(decalNoise > 8){
             //chests
@@ -123,7 +125,7 @@ Chunk.prototype.Update = function () {
     this.SetUnitTiles();
     this.CheckUnitDecalCollision();
     this.CheckUnitTileCollision();
-    this.UpdateUnits();
+    //this.UpdateUnits();
     this.Draw();
 
     //stage.update();
@@ -163,10 +165,8 @@ Chunk.prototype.SetUnitTiles = function () {
     for (var i = 0; i < this.tiles.length; i++) {
         for (var j = 0; j < this.units.length; j++) {
             var nextTile;
-            if(i + 1 % this.chunkSize == 0){
-                nextTile = this.tiles[i - 1];
-
-               // nextTile = this.nextChunk.tiles[i - this.chunkSize + 1];
+            if((i + 1) % this.chunkSize == 0){
+                nextTile = this.nextChunk.GetTileByCoord(this.tiles[i].xPos + 1, this.tiles[i].yPos);
             }
             else{
                 nextTile = this.tiles[i + 1];
@@ -194,11 +194,20 @@ Chunk.prototype.CheckUnitTileCollision = function () {
     }
 }
 Chunk.prototype.ContainsUnit = function(unit){
-    var n = 0;
     var b =
-    (unit.s.x + 18 >= this.xOrigin*50 + n) &&
-    (unit.s.x + 18 <= this.xOrigin*50 + this.width + n) &&
-    (unit.s.y <= this.yOrigin*50 + this.width + n) &&
-    (unit.s.y >= this.yOrigin*50  + n);
+    (unit.s.x + 18 >= this.xOrigin*50 - 100) &&
+    (unit.s.x + 18 <= this.xOrigin*50 + this.width) &&
+    (unit.s.y + 45 <= this.yOrigin*50 + this.width + 100) &&
+    (unit.s.y + 45 >= this.yOrigin*50 - 0);
     return b;
+}
+
+Chunk.prototype.GetTileByCoord = function(xPos,yPos){
+    var tile;
+    for(var i = 0; i < this.tiles.length; i++){
+        if(this.tiles[i].xPos == xPos && this.tiles[i].yPos == yPos){
+            tile = this.tiles[i];
+        }
+    }
+    return tile;
 }
