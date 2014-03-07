@@ -1,5 +1,6 @@
 function Decal(type) {
     this.type = type;
+    this.passable = false;
     var s;
     this.rando = Math.random() * 2;
     switch (type) {
@@ -22,21 +23,29 @@ function Decal(type) {
             s.setTransform(0, 0, rand, rand, 0, 0, 0, 10, 60);
             this.xOffset = 10;
             this.yOffset = 10;
-            break
+            break;
         case 3:
             var rand = Math.random() / 2 + .9;
             s = new createjs.Bitmap("assets/pine.png");
             s.setTransform(0, 0, rand, rand, 0, 0, 0, 20, 80);
             this.xOffset = 25;
             this.yOffset = 30;
-            break
+            break;
+        case 4:
+            this.passable = true;
+            //var rand = Math.random() / 2 + .9;
+            s = new createjs.Bitmap("assets/grass_decal.png");
+            s.setTransform(0, 0, 1, 1, 0, 0, 0, 0, 80);
+            this.xOffset = 0;
+            this.yOffset = 30;
+            break;
     }
     this.s = s;
     this.Use = function Use() {
         //
     }
     this.Update = function Update() {
-        if (this.type == 1 || this.type == 3) {
+        if (this.type == 1 || this.type == 3 || this.type == 4) {
             // s.set({regX : 25, regY : 100});
             s.set({skewX: -1 + Math.sin((counter) / 25 + this.rando) * 3});
             s.set({skewY: -1 + Math.sin((counter) / 10 + this.rando) * 2});

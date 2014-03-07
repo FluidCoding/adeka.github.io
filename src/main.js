@@ -23,7 +23,7 @@ var counter = 0;
 var chunks = [];
 var simplex = new SimplexNoise();
 var simplex2 = new SimplexNoise();
-var mapSize = 5;
+var mapSize = 50;
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
 function init() {
@@ -77,6 +77,7 @@ function init() {
 
 //main update loop
 function tick(event) {
+   // console.log(chunks.length*chunks[0].tiles.length);
      counter++;
     for(var i = 0; i < chunks.length; i++){
         for(var j = 0; j < allUnits.length; j++){

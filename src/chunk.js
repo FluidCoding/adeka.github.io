@@ -5,7 +5,7 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
     this.stage = stage;
 
     this.nextChunk;
-
+    this.rootUnits = [];
     this.xOrigin = xOrigin;
     this.yOrigin = yOrigin;
     this.chunkSize = 10;
@@ -17,7 +17,7 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
     this.units = [];
 
     for (var i = 0; i < tileCount; i++) {
-        var bunnyChance = Math.random() * 1000;
+        var bunnyChance = Math.random() * 100000;
         var wolfChance = Math.random() * 1000;
         var deerChance = Math.random() * 1000;
         var fishChance = Math.random() * 1000;
@@ -29,10 +29,10 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
             xPos += 1;
         }
         var type;
-        var blurNoise = simplex.noise2D(xPos / 20, yPos / 20) * 10;
-        var landNoise = simplex.noise2D(xPos / 8, yPos / 8) * 15;
-        var noise = simplex.noise2D(xPos, yPos) * 10;
-        var decalNoise = simplex2.noise2D(xPos, yPos) * 10;
+        var blurNoise = simplex.noise2D(xPos / 40, yPos / 40) * 10;
+        var landNoise = simplex.noise2D(xPos / 20, yPos / 20) * 15;
+        var noise = simplex.noise2D(xPos/10, yPos/10) * 10;
+        var decalNoise = simplex2.noise2D(xPos/10, yPos/10) * 10;
         var yOffset = 0;
         if (blurNoise > 4) {
             type = 3;
@@ -68,21 +68,25 @@ function Chunk(stage, simplex, simplex2, xOrigin, yOrigin) {
             //var decal = new Decal(3);
             //tile.AddDecal(decal);
             //}
-            if (noise > 4) {
+            if (noise > 5) {
                 var decal = new Decal(1);
                 tile.AddDecal(decal);
             }
-            else if (noise > 3) {
+            else if (noise > 4) {
                 var decal = new Decal(3);
+                tile.AddDecal(decal);
+            }
+            else if(decalNoise > 1){
+                var decal = new Decal(4);
                 tile.AddDecal(decal);
             }
 
             if (!tile.decal) {
-                if (bunnyChance > 988) {
+                if (bunnyChance > 980000) {
                     var bunny = new NPC("bunny");
                     bunny.s.x = tile.s.x;
                     bunny.s.y = tile.s.y;
-                    //units.push(bunny);
+                   // allUnits.push(bunny);
                 }
                 else if (deerChance > 988) {
                     var deer = new NPC("deer");
@@ -138,7 +142,7 @@ Chunk.prototype.Draw = function () {
         var tilex = this.tiles[i].s.x + stage.x;
         var tiley = this.tiles[i].s.y + stage.y;
         var distance = Math.sqrt(Math.pow(tilex - 400, 2) + Math.pow(tiley - 450, 2));
-        if (distance < 450) {
+        if (distance < 650) {
             stage.addChild(this.tiles[i].s);
             this.tiles[i].Update();
             this.DrawUnits(this.tiles[i]);
@@ -174,7 +178,7 @@ Chunk.prototype.SetUnitTiles = function () {
 Chunk.prototype.CheckUnitDecalCollision = function () {
     //decal collisions
     for (var i = 0; i < this.tiles.length; i++) {
-        if (this.tiles[i].decal) {
+        if (this.tiles[i].decal && !this.tiles[i].decal.passable) {
             for (var j = 0; j < this.units.length; j++) {
                 this.units[j].CheckDecalCollision(this.tiles[i]);
             }
@@ -190,10 +194,11 @@ Chunk.prototype.CheckUnitTileCollision = function () {
     }
 }
 Chunk.prototype.ContainsUnit = function(unit){
+    var n = 0;
     var b =
-    (unit.s.x + 18 >= this.xOrigin*50) &&
-    (unit.s.x + 18 <= this.xOrigin*50 + this.width) &&
-    (unit.s.y <= this.yOrigin*50 + this.width) &&
-    (unit.s.y >= this.yOrigin*50 );
+    (unit.s.x + 18 >= this.xOrigin*50 + n) &&
+    (unit.s.x + 18 <= this.xOrigin*50 + this.width + n) &&
+    (unit.s.y <= this.yOrigin*50 + this.width + n) &&
+    (unit.s.y >= this.yOrigin*50  + n);
     return b;
 }
