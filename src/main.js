@@ -18,7 +18,8 @@ var KEYCODE_S = 83;
 var KEYCODE_A = 65;
 var KEYCODE_D = 68;
 var KEYCODE_F = 70;
-var right = false, down = false;
+var KEYCODE_I = 73;
+var right = false, down = false, isInvShown = false;
 var counter = 0;
 var chunks = [];
 var simplex = new SimplexNoise();
@@ -121,7 +122,8 @@ function tick(event) {
 
 
     }
-
+    if(isInvShown)
+        ShowInventory();
     stage.update();
     CenterScreen();
     stage.removeAllChildren();
@@ -188,10 +190,31 @@ function handleKeyUp(e) {
         case KEYCODE_S:
             if (down) hero.yVel = 0;
             break;
+        case KEYCODE_I:
+            if(!isInvShown) isInvShown=true;
+            else    isInvShown=false;
+            break;
     }
 }
 
+// Displays UI Inventory
+ShowInventory = function(){
+    // X and Y coordinates of the menu
+    var x = hero.s.x + 50;
+    var y = hero.s.y - 300
+    var invWidth = 325;
+    var invHeight = 500;
+    // Graphics Object to do some drawing with
+    var g = new createjs.Graphics();
+    g.beginFill("#FFFFFF");
+    g.rr(0,0, invWidth, invHeight, .5);
+    var roundedMenu = new createjs.Shape(g);
+    roundedMenu.x =  hero.s.x + 50;
+    roundedMenu.y =  hero.s.y - 400;
 
+    // Add that menu to the stagee
+    stage.addChild(roundedMenu);
+}
 
 CenterScreen = function () {
     //move screen to center on hero
